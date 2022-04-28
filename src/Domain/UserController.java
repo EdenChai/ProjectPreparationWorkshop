@@ -1,5 +1,6 @@
 package Domain;
 import DataAccess.*;
+import Domain.Users.User;
 
 import java.sql.SQLException;
 

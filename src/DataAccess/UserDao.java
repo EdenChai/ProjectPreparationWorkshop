@@ -1,5 +1,5 @@
 package DataAccess;
-import Domain.User;
+import Domain.Users.User;
 import java.util.*;
 
 public class UserDao implements Dao<User> {
