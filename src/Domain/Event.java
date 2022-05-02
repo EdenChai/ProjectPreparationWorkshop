@@ -1,0 +1,6 @@
+package Domain;
+
+public enum Event
+{
+    GOAL, OFFSIDE, FOUL, REDCARD, YELLOWCARD, INJURY, PLAYERSUBSTITUTION
+}

@@ -1,6 +1,9 @@
 package DataAccess;
 
+import Domain.Users.Referee;
+
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -14,6 +17,11 @@ public class DBConnector {
     //private constructor to avoid client applications to use constructor
     public static DBConnector getInstance(){
         return instance;
+    }
+
+    public ArrayList<Referee> getRefereeByDate(Date date){
+        //return available referees ist
+        return new ArrayList<Referee>();
     }
 
     private DBConnector() {

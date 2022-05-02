@@ -1,13 +1,19 @@
 package Domain.Users;
 
+import Domain.EventLog;
+import Domain.Game;
+import Domain.League;
+
+import java.util.ArrayList;
+
 public class Referee extends User
 {
     /** -----Base attributes----- */
     private String qualification;
     /** -----Derivatives attributes----- */
-    private EventLog[] eventLogs;
-    private Game[] games;
-    private League[] leagues;
+    private ArrayList<EventLog> eventLogs;
+    private ArrayList<Game> games;
+    private ArrayList<League> leagues;
 
     /** -----Functions----- */
 
