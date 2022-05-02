@@ -23,5 +23,67 @@ public class Team
     private String name;
     private Stadium homeStadium;
 
+    public ArrayList<TeamManager> getTeamManagers() {
+        return teamManagers;
+    }
 
+    public void setTeamManagers(ArrayList<TeamManager> teamManagers) {
+        this.teamManagers = teamManagers;
+    }
+
+    public Coach getCoach() {
+        return coach;
+    }
+
+    public void setCoach(Coach coach) {
+        this.coach = coach;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(ArrayList<Player> players) {
+        this.players = players;
+    }
+
+    public TeamOwner getTeamOwner() {
+        return teamOwner;
+    }
+
+    public void setTeamOwner(TeamOwner teamOwner) {
+        this.teamOwner = teamOwner;
+    }
+
+    public ArrayList<Game> getHomeGames() {
+        return homeGames;
+    }
+
+    public void setHomeGames(ArrayList<Game> homeGames) {
+        this.homeGames = homeGames;
+    }
+
+    public ArrayList<Game> getAwayGames() {
+        return awayGames;
+    }
+
+    public void setAwayGames(ArrayList<Game> awayGames) {
+        this.awayGames = awayGames;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Stadium getHomeStadium() {
+        return homeStadium;
+    }
+
+    public void setHomeStadium(Stadium homeStadium) {
+        this.homeStadium = homeStadium;
+    }
 }

@@ -19,6 +19,43 @@ public class League
     private ArrayList<Referee> referees;
     private ArrayList<Season> seasons;
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public AssociationMember getAssociationMember() {
+        return associationMember;
+    }
+
+    public void setAssociationMember(AssociationMember associationMember) {
+        this.associationMember = associationMember;
+    }
+
+    public ArrayList<Referee> getReferees() {
+        return referees;
+    }
+
+    public void setReferees(ArrayList<Referee> referees) {
+        this.referees = referees;
+    }
+
+    public ArrayList<Season> getSeasons() {
+        return seasons;
+    }
+
+    public void setSeasons(ArrayList<Season> seasons) {
+        this.seasons = seasons;
+    }
+
+    public ArrayList<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(ArrayList<Game> games) {
+        this.games = games;
+    }
 }

@@ -1,5 +1,11 @@
 package Domain.Users;
 
+import DataAccess.DBConnector;
+import Domain.Game;
+import Domain.League;
+
+import java.util.ArrayList;
+
 public class AssociationMember extends User
 {
     /** -----Base attributes----- */
@@ -9,6 +15,14 @@ public class AssociationMember extends User
 
     /** -----Functions----- */
 
+    public Leage[] getLeagues() {
+        return leagues;
+    }
+
+    public void setLeagues(Leage[] leagues) {
+        this.leagues = leagues;
+    }
+
     /**
      * Makes a new League objects
      */
@@ -16,6 +30,7 @@ public class AssociationMember extends User
     {
         //TODO - Implement this function + change return type
     }
+
 
     /**
      *
@@ -30,9 +45,36 @@ public class AssociationMember extends User
     /**
      * Makes a new referee account and adds it
      */
-    public void addReferee()
-    {
-        //TODO - Implement this function + change return type
+    public void addReferee(Game game) throws Exception {
+        if (game.getDate()==null || game.getStadium()==null){
+            throw new Exception("pre-conditions are not met");
+
+        }
+
+        if (game.getSeason().getPolicy()==null){
+            throw new Exception("policy is not existed :(");
+        }
+
+        ArrayList<Referee> referees;
+        referees = DBConnector.getInstance().getRefereeByDate(game.getDate());
+        Referee referee = null;
+        if (referees.size()>0){
+            referee= referees.get(0);  // the first referee is chosen
+        }
+        else{
+            throw new Exception("no available referee for this game");
+        }
+
+        if (game.getSeason().getPolicy().IsRefereeLegal(game, referee)) {
+            throw new Exception("the game doesn't match the policy");
+        }
+        else{
+            game.addReferee(referee);
+        }
+
+
+
+
     }
 
 

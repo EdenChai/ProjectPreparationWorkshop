@@ -24,8 +24,88 @@ public class Game
   private League league;
   private Season season;
 
+    public String getScore() {
+        return score;
+    }
 
+    public void setScore(String score) {
+        this.score = score;
+    }
 
+    public Date getDate() {
+        return date;
+    }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
+    public void addReferee(Referee referee){
+        this.referees.add(referee);
+    }
+    public Team getHome() {
+        return home;
+    }
+
+    public void setHome(Team home) {
+        this.home = home;
+    }
+
+    public Team getAway() {
+        return away;
+    }
+
+    public void setAway(Team away) {
+        this.away = away;
+    }
+
+    public ArrayList<Referee> getReferees() {
+        return referees;
+    }
+
+    public void setReferees(ArrayList<Referee> referees) {
+        this.referees = referees;
+    }
+
+    public Stadium getStadium() {
+        return stadium;
+    }
+
+    public void setStadium(Stadium stadium) {
+        this.stadium = stadium;
+    }
+
+    public ArrayList<EventLog> getEventLogs() {
+        return eventLogs;
+    }
+
+    public void setEventLogs(ArrayList<EventLog> eventLogs) {
+        this.eventLogs = eventLogs;
+    }
+
+    public MainReferee getMainReferee() {
+        return mainReferee;
+    }
+
+    public void setMainReferee(MainReferee mainReferee) {
+        this.mainReferee = mainReferee;
+    }
+
+    public League getLeague() {
+        return league;
+    }
+
+    public void setLeague(League league) {
+        this.league = league;
+    }
+
+    public Season getSeason() {
+        return season;
+    }
+
+    public void setSeason(Season season) {
+        this.season = season;
+    }
 }
+
+

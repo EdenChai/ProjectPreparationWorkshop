@@ -15,7 +15,38 @@ public class Referee extends User
     private ArrayList<Game> games;
     private ArrayList<League> leagues;
 
-    /** -----Functions----- */
+    public String getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
+    }
+
+    public ArrayList<EventLog> getEventLogs() {
+        return eventLogs;
+    }
+
+    public void setEventLogs(ArrayList<EventLog> eventLogs) {
+        this.eventLogs = eventLogs;
+    }
+
+    public ArrayList<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(ArrayList<Game> games) {
+        this.games = games;
+    }
+
+    public ArrayList<League> getLeagues() {
+        return leagues;
+    }
+
+    public void setLeagues(ArrayList<League> leagues) {
+        this.leagues = leagues;
+    }
+/** -----Functions----- */
 
     /**
      *
