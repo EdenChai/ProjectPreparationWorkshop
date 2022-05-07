@@ -1,11 +1,11 @@
 package Domain.Users;
 
-import Service.UserApplication;
+import Service.System;
 
 public class SystemManager extends User
 {
     /** -----Derivatives attributes----- */
-    private UserApplication userApplication;
+    private System system;
 
     /** -----Functions----- */
 

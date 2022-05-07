@@ -5,8 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Domain.UserController;
-import Service.*;
+import Service.System;
 
 public class UserPresentation extends Container {
     private JButton insertUserButton;
@@ -20,7 +19,7 @@ public class UserPresentation extends Container {
 
              @Override
             public void actionPerformed(ActionEvent e) {
-                UserApplication ua = new UserApplication();
+                System ua = new System();
                 ua.insertUser(UserName.getText(), UsereMail.getText());
             }
         });

@@ -1,7 +1,6 @@
 package Domain.Users;
 
-import Service.UserApplication;
-import com.sun.xml.internal.bind.v2.TODO;
+import Service.System;
 
 public abstract class User
 {
@@ -10,8 +9,9 @@ public abstract class User
     private String name;
     private String userName;
     private String password;
+    private boolean isLogged;
     /** -----Derivatives attributes----- */
-    private UserApplication userApplication;
+    private System system;
 
 
     /** -----Functions----- */
@@ -34,6 +34,60 @@ public abstract class User
     {
         //TODO - Implement logout function + change return type
     }
+
+
+    /** -----Getters and Setters----- */
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public String getUserName()
+    {
+        return userName;
+    }
+
+    public void setUserName(String userName)
+    {
+        this.userName = userName;
+    }
+
+    public String getPassword()
+    {
+        return password;
+    }
+
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
+
+    public System getSystem()
+    {
+        return system;
+    }
+
+    public void setSystem(System system)
+    {
+        this.system = system;
+    }
+
+    public boolean isLogged()
+    {
+        return isLogged;
+    }
+
+    public void setLogged(boolean logged)
+    {
+        isLogged = logged;
+    }
+
 
 
 }

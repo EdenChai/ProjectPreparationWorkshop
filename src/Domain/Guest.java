@@ -1,13 +1,13 @@
 package Domain;
 
-import Service.UserApplication;
+import Service.System;
 
 public class Guest
 {
     /** -----Base attributes----- */
 
     /** -----Derivatives attributes----- */
-    private UserApplication userApplication;
+    private System system;
 
     /** -----Functions----- */
 

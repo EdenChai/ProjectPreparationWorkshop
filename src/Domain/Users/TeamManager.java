@@ -1,7 +1,5 @@
 package Domain.Users;
 
-import Service.UserApplication;
-
 public class TeamManager extends User
 {
     /** -----Base attributes----- */
