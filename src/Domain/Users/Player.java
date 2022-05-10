@@ -1,5 +1,8 @@
 package Domain.Users;
 
+import Domain.Position;
+import Domain.Team;
+
 public class Player extends User
 {
     /** -----Base attributes----- */

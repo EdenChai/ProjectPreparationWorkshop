@@ -1,4 +1,4 @@
-package Domain.Users;
+package Domain;
 
 public enum Position
 {
