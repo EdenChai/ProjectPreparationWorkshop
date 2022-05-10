@@ -88,6 +88,4 @@ public abstract class User
         isLogged = logged;
     }
 
-
-
 }
