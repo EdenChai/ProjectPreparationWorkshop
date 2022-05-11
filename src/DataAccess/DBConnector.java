@@ -1,11 +1,13 @@
 package DataAccess;
 
+import Domain.Stadium;
 import Domain.Users.Referee;
 
 //import java.sql.*;
 //import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -21,9 +23,13 @@ public class DBConnector {
         return instance;
     }
 
-    public ArrayList<Referee> getRefereeByDate(Date date){
+    public ArrayList<Referee> getRefereeByDate(Date date){ // TODO CONNECT WITH DB
         //return available referees ist
         return new ArrayList<Referee>();
+    }
+
+    public HashMap<Date, ArrayList<Stadium>> getStadiumsAndDates(){ //TODO CONNECT WITH DB
+        return new HashMap<Date, ArrayList<Stadium>>();
     }
 
     private DBConnector() {
