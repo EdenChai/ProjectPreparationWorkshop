@@ -40,6 +40,11 @@ class AssociationMemberTest
     }
 
     @Test
+    void assignGames()
+    {
+    }
+
+    @Test
     void addPolicy()
     {
     }
