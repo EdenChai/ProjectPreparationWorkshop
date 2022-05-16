@@ -10,10 +10,26 @@ public class Referee extends User
 {
     /** -----Base attributes----- */
     private String qualification;
+
+    private String name;
     /** -----Derivatives attributes----- */
     private ArrayList<EventLog> eventLogs;
     private ArrayList<Game> games;
     private ArrayList<League> leagues;
+
+    public Referee(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getQualification() {
         return qualification;

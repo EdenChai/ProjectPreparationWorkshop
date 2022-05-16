@@ -73,8 +73,24 @@ public class DBConnector {
         }
     }
     public HashMap<Date, ArrayList<Referee>> getAvailableReferrees(){
-        //TODO get ta hashmap, of date as keys and referees arraylist as value
-        return(null);
+        ResultSet resultSet = null;
+        try {
+            resultSet = statement.executeQuery("select * from referees");
+            HashMap<Date, ArrayList<Referee>> referees_dates = new HashMap<Date, ArrayList<Referee>>();
+            while(resultSet.next()){
+                String string_date = resultSet.getString("date");
+                String string_name = resultSet.getString("name");
+
+                Date date= new SimpleDateFormat("dd-MM-yyyy").parse(string_date);
+                Referee referee = new Referee(string_name);
+                referees_dates.put(date, new ArrayList<Referee>());
+            }
+            return referees_dates;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public HashMap<Date, ArrayList<Stadium>> getStadiumsAndDates(){ //TODO CONNECT WITH DB

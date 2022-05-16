@@ -1,12 +1,8 @@
 package Service;
 
 import DataAccess.DBController;
-import DataAccess.UserDao;
 import Domain.*;
 import Domain.Users.User;
-
-import java.sql.SQLException;
-import java.util.*;
 
 public class System
 {
