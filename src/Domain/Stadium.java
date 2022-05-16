@@ -13,5 +13,8 @@ public class Stadium
    private String name;
    private String city;
 
-
+   public Stadium(String name, String city) {
+      this.name = name;
+      this.city = city;
+   }
 }
