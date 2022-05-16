@@ -2,6 +2,7 @@ package DataAccess;
 
 import Domain.Stadium;
 import Domain.Users.Referee;
+import javafx.util.Pair;
 
 //import java.sql.*;
 //import java.sql.*;
@@ -23,9 +24,19 @@ public class DBConnector {
         return instance;
     }
 
-    public ArrayList<Referee> getRefereeByDate(Date date){ // TODO CONNECT WITH DB
-        //return available referees ist
-        return new ArrayList<Referee>();
+    public void DatesAndStadiumsToMakeAsAssigned(ArrayList<Pair<Date, Stadium>>  datesAndStadiums){ // TODO CONNECT WITH DB
+        //mark the referees as assigned in the DB
+    }
+    public void RefereesToMakAsAssigned(ArrayList<Pair<Referee, Date>> unavailableReferees) { // TODO CONNECT WITH DB
+        //mark the referees as assigned in the DB
+    }
+    public ArrayList<Pair<Date, Stadium>> getAvailableStadiums(){
+        //TODO get the stadium, date tuples of the available ones
+        return(null);
+        }
+    public HashMap<Date, ArrayList<Referee>> getAvailableReferrees(){
+        //TODO get ta hashmap, of date as keys and referees arraylist as value
+        return(null);
     }
 
     public HashMap<Date, ArrayList<Stadium>> getStadiumsAndDates(){ //TODO CONNECT WITH DB
@@ -44,8 +55,7 @@ public class DBConnector {
         try {
             //DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
             //return DriverManager.getConnection(URL, USER, PASS);
-            Connection conn =
-                    DriverManager.getConnection("jdbc:mysql://localhost:3306/example","root", "root");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/example","root", "root");
 
             return conn;
         } catch (SQLException ex) {
