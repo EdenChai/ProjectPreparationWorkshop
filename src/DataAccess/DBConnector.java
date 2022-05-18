@@ -43,6 +43,11 @@ public class DBConnector {
         return instance;
     }
 
+    public static Connection getConnection()
+    {
+        return null;
+    }
+
     public void DatesAndStadiumsToMakeAsAssigned(ArrayList<Pair<Date, Stadium>>  datesAndStadiums){ // TODO CONNECT WITH DB
         //mark the referees as assigned in the DB
     }
@@ -83,6 +88,11 @@ public class DBConnector {
 
     private DBConnector() {
 
+    }
+
+    public ArrayList<Referee> getRefereeByDate(Date date)
+    {
+        return null;
     }
     /**
      * Get a connection to database

@@ -1,11 +1,24 @@
 package Domain.Users;
 
+import Domain.Team;
 import Service.System;
 
 public class SystemManager extends User
 {
     /** -----Derivatives attributes----- */
     private System system;
+
+    public SystemManager(String name, String userName, String password, boolean isLogged, System system)
+    {
+        super(name, userName, password, isLogged, system);
+        this.system = system;
+    }
+
+    public SystemManager(String name, String userName, String password, boolean isLogged)
+    {
+        super(name, userName, password, isLogged);
+    }
+
 
     /** -----Functions----- */
 

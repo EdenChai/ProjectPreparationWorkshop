@@ -3,6 +3,7 @@ package Domain.Users;
 import Domain.EventLog;
 import Domain.Game;
 import Domain.League;
+import Service.System;
 
 import java.util.ArrayList;
 
@@ -46,7 +47,27 @@ public class Referee extends User
     public void setLeagues(ArrayList<League> leagues) {
         this.leagues = leagues;
     }
-/** -----Functions----- */
+
+    public Referee(String name, String userName, String password, boolean isLogged, System system, String qualification, ArrayList<EventLog> eventLogs, ArrayList<Game> games, ArrayList<League> leagues)
+    {
+        super(name, userName, password, isLogged, system);
+        this.qualification = qualification;
+        this.eventLogs = eventLogs;
+        this.games = games;
+        this.leagues = leagues;
+    }
+
+    public Referee(String name, String userName, String password, boolean isLogged, String qualification, ArrayList<EventLog> eventLogs, ArrayList<Game> games, ArrayList<League> leagues)
+    {
+        super(name, userName, password, isLogged);
+        this.qualification = qualification;
+        this.eventLogs = eventLogs;
+        this.games = games;
+        this.leagues = leagues;
+    }
+
+
+    /** -----Functions----- */
 
     /**
      *
@@ -84,7 +105,7 @@ public class Referee extends User
      * @param score - A string representing the game's score results
      * Sets the resulting score of a game to the given score
      */
-    public addResult(Game game, String score)
+    public void addResult(Game game, String score)
     {
         //TODO - Implement addResult function + change return type
     }

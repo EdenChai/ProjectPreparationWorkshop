@@ -3,6 +3,8 @@ package Domain.Users;
 import DataAccess.DBConnector;
 import Domain.Game;
 import Domain.League;
+import Domain.Season;
+import Service.System;
 
 import java.util.ArrayList;
 
@@ -11,15 +13,28 @@ public class AssociationMember extends User
     /** -----Base attributes----- */
 
     /** -----Derivatives attributes----- */
-    private Leage[] leagues;
+    private League[] leagues;
+
+
+    public AssociationMember(String name, String userName, String password, boolean isLogged, System system)
+    {
+        super(name, userName, password, isLogged, system);
+    }
+
+    public AssociationMember(String name, String userName, String password, boolean isLogged)
+    {
+        super(name, userName, password, isLogged);
+    }
+
+
 
     /** -----Functions----- */
 
-    public Leage[] getLeagues() {
+    public League[] getLeagues() {
         return leagues;
     }
 
-    public void setLeagues(Leage[] leagues) {
+    public void setLeagues(League[] leagues) {
         this.leagues = leagues;
     }
 

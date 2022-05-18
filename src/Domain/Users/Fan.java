@@ -1,9 +1,32 @@
 package Domain.Users;
 
+import Service.System;
+
 public class Fan extends User
 {
+    /**
+     * -----Functions-----
+     *
+     * @param name
+     * @param userName
+     * @param password
+     * @param isLogged
+     * @param system
+     */
+
+
+    public Fan(String name, String userName, String password, boolean isLogged, System system)
+    {
+        super(name, userName, password, isLogged, system);
+    }
+
+    public Fan(String name, String userName, String password, boolean isLogged)
+    {
+        super(name, userName, password, isLogged);
+    }
 
     /** -----Functions----- */
+
 
     /**
      *
@@ -12,7 +35,16 @@ public class Fan extends User
      */
     public void updateDetails(String field, String text)
     {
-        //TODO - Implement updateDetails function + change return type
+        switch(field)
+        {
+            case "userName":
+                setUserName(text);
+                break;
+            case "password":
+                setPassword(text);
+                break;
+            default:
+        }
     }
 
 }

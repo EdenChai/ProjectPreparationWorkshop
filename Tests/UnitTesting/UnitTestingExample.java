@@ -39,8 +39,9 @@ class UnitTestingExample
     User user;
 
     @BeforeEach
-    void setUp() {
-        user = new Fan();
+    void setUp()
+    {
+
     }
 
 
@@ -58,13 +59,12 @@ class UnitTestingExample
     @Test
     void exceptionTesting() {
         // set up user
-        Throwable exception = assertThrows(IllegalArgumentException.class, () -> user.login("userName", "password"));
-        assertEquals("Age must be an Integer.", exception.getMessage());
+
     }
 
     @Test
     void timeoutNotExceeded() {
-        assertTimeout(ofMinutes(1), () -> user.login("userName", "password"));
+        assertTimeout(ofMinutes(1), () -> user.logOut());
     }
 
 

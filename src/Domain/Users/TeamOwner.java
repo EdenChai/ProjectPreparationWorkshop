@@ -1,11 +1,26 @@
 package Domain.Users;
 
+import Domain.Team;
+import Service.System;
+
 public class TeamOwner extends User
 {
     /** -----Base attributes----- */
     private User[] appointed;
     /** -----Derivatives attributes----- */
     private Team team;
+
+
+    public TeamOwner(String name, String userName, String password, boolean isLogged, System system)
+    {
+        super(name, userName, password, isLogged, system);
+    }
+
+    public TeamOwner(String name, String userName, String password, boolean isLogged)
+    {
+        super(name, userName, password, isLogged);
+    }
+
 
     /** -----Functions attributes----- */
 

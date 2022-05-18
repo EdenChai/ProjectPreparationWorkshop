@@ -11,10 +11,21 @@ public class Guest
 
     /** -----Functions----- */
 
-
-    public void register(String userName, String password, String email)
+    /**
+     *
+     * @param userName - A string representing the user name
+     * @param password - A string representing the user password
+     *  Logs in the user
+     */
+    public void login(String userName, String password) throws Exception
     {
-        //TODO - Implement function + change return type
+        system.logIn(userName,password);
+    }
+
+
+    public void register(String name, String mail, String password, boolean isLogged) throws Exception
+    {
+        system.registerFan(name, mail, password, isLogged, system);
     }
 
 }

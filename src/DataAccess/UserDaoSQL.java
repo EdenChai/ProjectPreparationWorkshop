@@ -39,8 +39,7 @@ public class UserDaoSQL implements Dao<User> {
                 Connection connection = DBConnector.getConnection();
                 Statement stmt = connection.createStatement();
 
-                String sql = "INSERT INTO users " +
-                        "VALUES (" + user.getName().concat(user.getEmail()).hashCode() + ",'" + user.getName() + "', '" + user.getEmail() + "');";
+                String sql = "INSERT INTO users ";
                 System.out.println(sql);
                 stmt.executeUpdate(sql);
             } catch (java.sql.SQLException e) {

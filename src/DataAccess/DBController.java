@@ -1,6 +1,7 @@
 package DataAccess;
 
-import Domain.Users.User;
+import Domain.Users.*;
+import Exceptions.UserDoesNotExist;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -12,20 +13,6 @@ public class DBController implements  Dao
     /** -----User log in scenario----- */
 
     private DB db;
-
-    public User getUser(String email) throws Exception
-    {
-        User user = db.getUser(email);
-
-        if (user == null)
-        {
-            // If User doesn't exist
-            throw new Exception("No such user exist in the system");
-        }
-        // If User exist, return it
-        return user;
-    }
-
 
     @Override
     public Optional get(long id)
@@ -56,6 +43,41 @@ public class DBController implements  Dao
     {
 
     }
+
+
+    public User getUser(String email) throws Exception
+    {
+        //TODO - For DB maker
+        User user = db.getUser(email);
+
+        if (user == null)
+        {
+            // If User doesn't exist
+            throw new UserDoesNotExist("No such user exist in the system");
+        }
+        // If User exist, return it
+        return user;
+    }
+
+    public void addUser(User newUser, String type)
+    {
+        //TODO - For DB maker
+    }
+
+
+    public void removeUser(String userToRemove)
+    {
+        //TODO - For DB maker
+    }
+
+    public void updateUser(String email,User updatedUser, String type)
+    {
+        removeUser(email);
+        addUser(updatedUser, type);
+
+    }
+
+
 
 
 }

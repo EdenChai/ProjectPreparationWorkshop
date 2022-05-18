@@ -13,18 +13,23 @@ public abstract class User
     /** -----Derivatives attributes----- */
     private System system;
 
+/** -----Functions----- */
 
-    /** -----Functions----- */
-
-    /**
-     *
-     * @param userName - A string representing the user name
-     * @param password - A string representing the user password
-     *  Logs in the user
-     */
-    public void login(String userName, String password)
+    public User(String name, String userName, String password, boolean isLogged, System system)
     {
-        //TODO - Implement login function + change return type
+        this.name = name;
+        this.userName = userName;
+        this.password = password;
+        this.isLogged = isLogged;
+        this.system = system;
+    }
+
+    public User(String name, String userName, String password, boolean isLogged)
+    {
+        this.name = name;
+        this.userName = userName;
+        this.password = password;
+        this.isLogged = isLogged;
     }
 
     /**
