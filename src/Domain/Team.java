@@ -23,6 +23,10 @@ public class Team
     private String name;
     private Stadium homeStadium;
 
+    public Team(String name) {
+        this.name = name;
+    }
+
     public ArrayList<TeamManager> getTeamManagers() {
         return teamManagers;
     }

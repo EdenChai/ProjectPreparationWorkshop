@@ -47,31 +47,31 @@ public class AssociationMember extends User
      * Makes a new referee account and adds it
      */
     public void addReferee(Game game) throws Exception {
-        if (game.getDate()==null || game.getStadium()==null){
-            throw new Exception("pre-conditions are not met");
-
-        }
-
-        if (game.getSeason().getPolicy()==null){
-            throw new Exception("policy is not existed :(");
-        }
-
-        ArrayList<Referee> referees;
-        referees = DBConnector.getInstance().getRefereeByDate(game.getDate());
-        Referee referee = null;
-        if (referees.size()>0){
-            referee= referees.get(0);  // the first referee is chosen
-        }
-        else{
-            throw new Exception("no available referee for this game");
-        }
-
-        if (game.getSeason().getPolicy().IsRefereeLegal(game, referee)) {
-            throw new Exception("the game doesn't match the policy");
-        }
-        else{
-            game.addReferee(referee);
-        }
+//        if (game.getDate()==null || game.getStadium()==null){
+//            throw new Exception("pre-conditions are not met");
+//
+//        }
+//
+//        if (game.getSeason().getPolicy()==null){
+//            throw new Exception("policy is not existed :(");
+//        }
+//
+//        ArrayList<Referee> referees;
+//        referees = DBConnector.getInstance().getRefereeByDate(game.getDate());
+//        Referee referee = null;
+//        if (referees.size()>0){
+//            referee= referees.get(0);  // the first referee is chosen
+//        }
+//        else{
+//            throw new Exception("no available referee for this game");
+//        }
+//
+//        if (game.getSeason().getPolicy().IsRefereeLegal(game, referee)) {
+//            throw new Exception("the game doesn't match the policy");
+//        }
+//        else{
+//            game.addReferee(referee);
+//        }
 
     }
 
@@ -81,35 +81,35 @@ public class AssociationMember extends User
      * @throws Exception
      */
     public void assignGames(Game game) throws Exception {
-        if (game==null){
-            throw new Exception("pre-conditions are not met"); //the game is not in the system.
-        }
-        if (game.getSeason().getPolicy()==null){
-            throw new Exception("policy is not existed :(");
-        }
-        if (!this.isLogged()){
-            throw new Exception("pre-conditions are not met - the user is not logged in");
-        }
-        HashMap<Date,ArrayList<Stadium>> stadiumsByDate;
-        stadiumsByDate = DBConnector.getInstance().getStadiumsAndDates();
-        if (stadiumsByDate.size() == 0){
-            throw new Exception("no optional stadiums");
-        }
-        //choose date and stadium
-        Date dateGame = stadiumsByDate.keySet().stream().findAny().get();
-        Stadium stadiumGame = stadiumsByDate.get(dateGame).get(0);
-
-        if (game.getSeason().getPolicy().IsGameLegal(game)) {
-            throw new Exception("the game doesn't match the policy");
-        }
-        else{
-            game.setDate(dateGame);
-            game.setStadium(stadiumGame);
-            addReferee(game);
-            //TODO DB WITH of assigned STADIUM AND DATES.
-        }
-        ArrayList<EventLog> eventLogs = new ArrayList<EventLog>();
-        game.setEventLogs(eventLogs);
+//        if (game==null){
+//            throw new Exception("pre-conditions are not met"); //the game is not in the system.
+//        }
+//        if (game.getSeason().getPolicy()==null){
+//            throw new Exception("policy is not existed :(");
+//        }
+//        if (!this.isLogged()){
+//            throw new Exception("pre-conditions are not met - the user is not logged in");
+//        }
+//        HashMap<Date,ArrayList<Stadium>> stadiumsByDate;
+//        stadiumsByDate = DBConnector.getInstance().getStadiumsAndDates();
+//        if (stadiumsByDate.size() == 0){
+//            throw new Exception("no optional stadiums");
+//        }
+//        //choose date and stadium
+//        Date dateGame = stadiumsByDate.keySet().stream().findAny().get();
+//        Stadium stadiumGame = stadiumsByDate.get(dateGame).get(0);
+//
+//        if (game.getSeason().getPolicy().IsGameLegal(game)) {
+//            throw new Exception("the game doesn't match the policy");
+//        }
+//        else{
+//            game.setDate(dateGame);
+//            game.setStadium(stadiumGame);
+//            addReferee(game);
+//            //TODO DB WITH of assigned STADIUM AND DATES.
+//        }
+//        ArrayList<EventLog> eventLogs = new ArrayList<EventLog>();
+//        game.setEventLogs(eventLogs);
     }
 
 

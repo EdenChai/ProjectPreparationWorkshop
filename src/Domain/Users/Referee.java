@@ -100,9 +100,9 @@ public class Referee extends User
      * @param score - A string representing the game's score results
      * Sets the resulting score of a game to the given score
      */
-    public addResult(Game game, String score)
-    {
-        //TODO - Implement addResult function + change return type
-    }
+//    public addResult(Game game, String score)
+//    {
+//        //TODO - Implement addResult function + change return type
+//    }
 
 }

@@ -1,5 +1,7 @@
 package Domain.Users;
 
+import Domain.Team;
+
 public class TeamManager extends User
 {
     /** -----Base attributes----- */

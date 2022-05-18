@@ -1,5 +1,6 @@
 package Domain.Users;
 
+import Domain.Team;
 import Service.System;
 
 public class SystemManager extends User

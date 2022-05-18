@@ -6,4 +6,9 @@ package Domain.Users;
  * @since 02-05-2022
  */
 public class MainReferee extends Referee
-{}
+{
+
+    public MainReferee(String name) {
+        super(name);
+    }
+}

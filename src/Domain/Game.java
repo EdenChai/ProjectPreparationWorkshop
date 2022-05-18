@@ -24,6 +24,11 @@ public class Game
     private League league;
     private Season season;
 
+    public Game(Team home, Team away) {
+        this.home = home;
+        this.away = away;
+    }
+
     public String getScore() {
         return score;
     }

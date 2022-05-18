@@ -1,42 +1,42 @@
 package Service;
 
-import DataAccess.DBController;
+//import DataAccess.DBController;
 import Domain.*;
 import Domain.Users.User;
 
 public class System
 {
-    UserController uc = new UserController();
+    //UserController uc = new UserController();
 
     public void insertUser(String iName, String iEmail) {
-        uc.insertUser(iName, iEmail);
+        //uc.insertUser(iName, iEmail);
     }
 
 
     /** -----User log in scenario----- */
 
-    private DBController dbController;
+    //private DBController dbController;
 
 
     public void logIn(String mail, String password) throws Exception
     {
         // Get the user that is trying to log in
-        User logInTryUser = this.dbController.getUser(mail);
+        //User logInTryUser = this.dbController.getUser(mail);
 
         // If the User is already logged in
-        if (logInTryUser.isLogged())
-        {
-            throw new Exception("User already logged in, please log out first");
-        }
-
-        // If passwords don't match
-        if (!logInTryUser.getPassword().equals(password))
-        {
-            throw new Exception("Passwords do not match, please try again");
-        }
-
-        //If user exist and password match, log him in
-        logInTryUser.setLogged(true);
+//        if (logInTryUser.isLogged())
+//        {
+//            throw new Exception("User already logged in, please log out first");
+//        }
+//
+//        // If passwords don't match
+//        if (!logInTryUser.getPassword().equals(password))
+//        {
+//            throw new Exception("Passwords do not match, please try again");
+//        }
+//
+//        //If user exist and password match, log him in
+//        logInTryUser.setLogged(true);
     }
 
 
