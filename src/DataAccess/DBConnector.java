@@ -46,7 +46,7 @@ public class DBConnector {
     public void DatesAndStadiumsToMakeAsAssigned(ArrayList<Pair<Date, Stadium>>  datesAndStadiums){ // TODO CONNECT WITH DB
         //mark the referees as assigned in the DB
     }
-    public ArrayList<Referee> RefereesToMakAsAssigned(ArrayList <Referee> assignedReferees) { // TODO CONNECT WITH DB
+    public ArrayList<Referee> RefereesToMakAsAssigned( ArrayList<Pair<Referee,Date>> assignedReferees) { // TODO CONNECT WITH DB
         //mark the referees as assigned in the DB
         return null;
     }
