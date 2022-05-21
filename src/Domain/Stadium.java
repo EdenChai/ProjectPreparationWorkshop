@@ -14,7 +14,25 @@ public class Stadium
    private String city;
 
    public Stadium(String name, String city) {
+      this.games = new ArrayList<Game>();
       this.name = name;
       this.city = city;
+   }
+
+   @Override
+   public String toString() {
+      return "Stadium{" +
+              "games=" + games +
+              ", name='" + name + '\'' +
+              ", city='" + city + '\'' +
+              '}';
+   }
+
+   public void addGame(Game game){
+      this.games.add(game);
+   }
+
+   public String getName() {
+      return name;
    }
 }

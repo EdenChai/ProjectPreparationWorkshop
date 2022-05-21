@@ -27,6 +27,7 @@ public class Game
     public Game(Team home, Team away) {
         this.home = home;
         this.away = away;
+        this.eventLogs = new ArrayList<EventLog>();
     }
 
     public String getScore() {
@@ -78,6 +79,7 @@ public class Game
 
     public void setStadium(Stadium stadium) {
         this.stadium = stadium;
+        stadium.addGame(this);
     }
 
     public ArrayList<EventLog> getEventLogs() {
@@ -110,6 +112,22 @@ public class Game
 
     public void setSeason(Season season) {
         this.season = season;
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "score='" + score + '\'' +
+                ", date=" + date +
+                ", home=" + home +
+                ", away=" + away +
+                ", referees=" + referees +
+                ", stadium=" + stadium.getName() +
+                ", eventLogs=" + eventLogs +
+                ", mainReferee=" + mainReferee +
+                ", league=" + league +
+                ", season=" + season +
+                '}';
     }
 }
 

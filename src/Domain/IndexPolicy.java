@@ -25,6 +25,8 @@ public class IndexPolicy extends Policy {
             unavailableStadiums.add(availableStadiums.get(i));
             availableStadiums.remove(i);
         }
+//        System.out.println(games);
+//        System.out.println(games.get(0).getStadium());
         DBConnector.getInstance().DatesAndStadiumsToMakeAsAssigned(unavailableStadiums);
         return true;
     }
@@ -34,7 +36,7 @@ public class IndexPolicy extends Policy {
     public Boolean assignReferees(ArrayList<Game> games) {
         ArrayList<Pair<Referee, Date>> unavailableReferees = new ArrayList<>();
         ArrayList<Game> cantBeAssigned = new ArrayList<>(); //list of games tht there is no available referee in their date
-        HashMap<Date, ArrayList<Referee>> availableReferees = DBConnector.getInstance().getAvailableReferrees();
+        HashMap<Date, ArrayList<Referee>> availableReferees = DBConnector.getInstance().getAvailableReferees();
         for (int i = 0; i < games.size(); i++) {
             if (availableReferees.containsKey(games.get(i).getDate())) { // if there is an available referee in the game's date
                 Referee theReferee = availableReferees.get(games.get(i).getDate()).get(0);

@@ -90,4 +90,11 @@ public class Team
     public void setHomeStadium(Stadium homeStadium) {
         this.homeStadium = homeStadium;
     }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

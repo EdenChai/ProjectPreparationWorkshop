@@ -16,5 +16,6 @@ public class main {
         games.add(new Game(team3, team4));
         games.add(new Game(team5, team6));
         IP.assignGames(games);
+
     }
 }
