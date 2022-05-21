@@ -1,12 +1,7 @@
 package Domain.Users;
 
-import DataAccess.DBConnector;
 import Domain.*;
 import Service.System;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 
 public class AssociationMember extends User
 {
@@ -18,14 +13,14 @@ public class AssociationMember extends User
     /** -----Functions----- */
 
 
-    public AssociationMember(String name, String userName, String password, boolean isLogged, System system)
+    public AssociationMember(String userName, String password, boolean isLogged, System system)
     {
-        super(name, userName, password, isLogged, system);
+        super(userName, password, isLogged, system);
     }
 
-    public AssociationMember(String name, String userName, String password, boolean isLogged)
+    public AssociationMember(String userName, String password, boolean isLogged)
     {
-        super(name, userName, password, isLogged);
+        super(userName, password, isLogged);
     }
 
 

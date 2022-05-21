@@ -21,8 +21,8 @@ class PlayerIntegrationTest
     {
         DBConnector dbConnector = new DBConnector();
         System system = new System(dbConnector);
-        Team team = new Team("Alpha");
-        player = new Player("Testy", "Testy@test.test", "testytesty", false, system,  "9/05/2022", Position.SWEEPER, team);
+        Team team = new Team("Test");
+        player = new Player("Testy", "testytesty", false, system,  "9/05/2022", Position.SWEEPER, team);
 
     }
 

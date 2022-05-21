@@ -48,18 +48,18 @@ public class Referee extends User
         this.leagues = leagues;
     }
 
-    public Referee(String name, String userName, String password, boolean isLogged, System system, String qualification, ArrayList<EventLog> eventLogs, ArrayList<Game> games, ArrayList<League> leagues)
+    public Referee(String userName, String password, boolean isLogged, System system, String qualification, ArrayList<EventLog> eventLogs, ArrayList<Game> games, ArrayList<League> leagues)
     {
-        super(name, userName, password, isLogged, system);
+        super(userName, password, isLogged, system);
         this.qualification = qualification;
         this.eventLogs = eventLogs;
         this.games = games;
         this.leagues = leagues;
     }
 
-    public Referee(String name, String userName, String password, boolean isLogged, String qualification, ArrayList<EventLog> eventLogs, ArrayList<Game> games, ArrayList<League> leagues)
+    public Referee(String userName, String password, boolean isLogged, String qualification, ArrayList<EventLog> eventLogs, ArrayList<Game> games, ArrayList<League> leagues)
     {
-        super(name, userName, password, isLogged);
+        super(userName, password, isLogged);
         this.qualification = qualification;
         this.eventLogs = eventLogs;
         this.games = games;

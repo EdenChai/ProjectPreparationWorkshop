@@ -21,12 +21,13 @@ class FanIntegrationTest
     {
         DBConnector dbConnector = new DBConnector();
         system = new System(dbConnector);
-        fan = new Fan("Testy", "Testy@test.test", "testytesty", false, system);
+        fan = new Fan("Testy", "testytesty", false, system);
     }
 
     @AfterEach
     void tearDown()
     {
+
     }
 
 
@@ -37,7 +38,7 @@ class FanIntegrationTest
     @DisplayName("I.FAN.1 - logOut() function test")
     void logOut() throws Exception
     {
-        assertDoesNotThrow(()->system.logIn("Testy@test.text", "testytesty"));
+        assertDoesNotThrow(()->system.logIn("Testy", "testytesty"));
         assertTrue(fan.isLogged());
 
         fan.logOut();

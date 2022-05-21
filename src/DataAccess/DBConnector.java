@@ -112,7 +112,7 @@ public class DBConnector {
                 String string_name = resultSet.getString("name");
 
                 Date date= new SimpleDateFormat("dd-MM-yyyy").parse(string_date);
-                Referee referee = new Referee(string_name);
+                //Referee referee = new Referee(string_name);
                 referees_dates.put(date, new ArrayList<Referee>());
             }
             return referees_dates;

@@ -1,7 +1,6 @@
 package UnitTesting;
 
 import Domain.Position;
-import Domain.Users.Fan;
 import Domain.Users.Player;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +16,7 @@ class PlayerUnitTest
     @BeforeEach
     void setUp()
     {
-        player = new Player("Testy", "Testy@test.test", "testytesty", false, "9/05/2022", Position.SWEEPER);
+        player = new Player("Testy", "testytesty", false, "9/05/2022", Position.SWEEPER);
 
     }
 
@@ -30,9 +29,9 @@ class PlayerUnitTest
     @DisplayName("U.PLAYER.1 - updateDetails() function test")
     void updateDetails()
     {
-        player.updateDetails("userName", "TestyReborn@test.test");
+        player.updateDetails("userName", "TestyReborn");
         String name = player.getUserName();
-        assertEquals("TestyReborn@test.test", name);
+        assertEquals("TestyReborn", name);
 
         player.updateDetails("password", "testytestyreborn");
         String pass = player.getPassword();

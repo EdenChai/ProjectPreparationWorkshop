@@ -22,10 +22,10 @@ public class System
     private DBConnector dbConnector;
 
 
-    public void logIn(String mail, String password) throws Exception
+    public void logIn(String userName, String password) throws Exception
     {
         // Get the user that is trying to log in
-        User logInTryUser = this.dbConnector.getUser(mail);
+        User logInTryUser = this.dbConnector.getUser(userName);
 
         // If the User is already logged in
         if (logInTryUser.isLogged())
@@ -44,128 +44,128 @@ public class System
         //this.dbController.updateUser(); TODO- update the user
     }
 
-    public void registerFan(String name, String mail, String password, boolean isLogged, System system) throws Exception
+    public void registerFan(String userName, String password, boolean isLogged, System system) throws Exception
     {
         User logInTryUser = null;
         try
         {
-            logInTryUser = this.dbConnector.getUser(mail);
+            logInTryUser = this.dbConnector.getUser(userName);
         }
         catch (UserDoesNotExist e)
         {
-            Fan newUser = new Fan(name, mail, password, isLogged, this);
+            Fan newUser = new Fan(userName, password, isLogged, this);
             this.dbConnector.addUser(newUser, "Fan"); // TODO - ADD the user
             return;
         }
         throw new UserAlreadyExist("User already exist! Please pick a different user name.");
     }
 
-    public void registerCoach(String name, String mail, String password, boolean isLogged, System system, String qualification, String position, Team team) throws Exception
+    public void registerCoach(String userName, String password, boolean isLogged, System system, String qualification, String position, Team team) throws Exception
     {
         User logInTryUser = null;
         try
         {
-            logInTryUser = this.dbConnector.getUser(mail);
+            logInTryUser = this.dbConnector.getUser(userName);
         }
         catch (UserDoesNotExist e)
         {
-            Coach newUser = new Coach(name,mail,password, isLogged, system, qualification, position, team);
+            Coach newUser = new Coach(userName,password, isLogged, system, qualification, position, team);
             this.dbConnector.addUser(newUser, "Coach");
             return;
         }
         throw new UserAlreadyExist("User already exist! Please pick a different user name.");
     }
 
-    public void registerAssociationMember(String name, String mail, String password, boolean isLogged, System system) throws Exception
+    public void registerAssociationMember(String userName, String password, boolean isLogged, System system) throws Exception
     {
         User logInTryUser = null;
         try
         {
-            logInTryUser = this.dbConnector.getUser(mail);
+            logInTryUser = this.dbConnector.getUser(userName);
         }
         catch (UserDoesNotExist e)
         {
-            AssociationMember newUser = new AssociationMember(name, mail,password, isLogged, system);
+            AssociationMember newUser = new AssociationMember(userName,password, isLogged, system);
             this.dbConnector.addUser(newUser, "AssociationMember");
             return;
         }
         throw new UserAlreadyExist("User already exist! Please pick a different user name.");
     }
 
-    public void registerMainReferee(String name, String mail, String password, boolean isLogged, System system, String qualification, ArrayList<EventLog> eventLogs, ArrayList<Game> games, ArrayList<League> leagues) throws Exception
+    public void registerMainReferee(String userName, String password, boolean isLogged, System system, String qualification, ArrayList<EventLog> eventLogs, ArrayList<Game> games, ArrayList<League> leagues) throws Exception
     {
         User logInTryUser = null;
         try
         {
-            logInTryUser = this.dbConnector.getUser(mail);
+            logInTryUser = this.dbConnector.getUser(userName);
         }
         catch (UserDoesNotExist e)
         {
-            MainReferee newUser = new MainReferee(name, mail,password, isLogged, system, qualification, eventLogs, games, leagues);
+            MainReferee newUser = new MainReferee(userName,password, isLogged, system, qualification, eventLogs, games, leagues);
             this.dbConnector.addUser(newUser, "MainReferee");
             return;
         }
         throw new UserAlreadyExist("User already exist! Please pick a different user name.");
     }
 
-    public void registerReferee(String name, String mail, String password, boolean isLogged, System system, String birthDay, Position position, Team team) throws Exception
+    public void registerReferee(String userName, String password, boolean isLogged, System system, String birthDay, Position position, Team team) throws Exception
     {
         User logInTryUser = null;
         try
         {
-            logInTryUser = this.dbConnector.getUser(mail);
+            logInTryUser = this.dbConnector.getUser(userName);
         }
         catch (UserDoesNotExist e)
         {
-            Player newUser = new Player(name, mail,password, isLogged, system, birthDay, position, team);
+            Player newUser = new Player(userName,password, isLogged, system, birthDay, position, team);
             this.dbConnector.addUser(newUser, "Player");
             return;
         }
         throw new UserAlreadyExist("User already exist! Please pick a different user name.");
     }
 
-    public void registerSystemManager(String name, String mail, String password, boolean isLogged, System system) throws Exception
+    public void registerSystemManager(String userName, String password, boolean isLogged, System system) throws Exception
     {
         User logInTryUser = null;
         try
         {
-            logInTryUser = this.dbConnector.getUser(mail);
+            logInTryUser = this.dbConnector.getUser(userName);
         }
         catch (UserDoesNotExist e)
         {
-            SystemManager newUser = new SystemManager(name, mail,password, isLogged, system);
+            SystemManager newUser = new SystemManager(userName,password, isLogged, system);
             this.dbConnector.addUser(newUser, "SystemManager");
             return;
         }
         throw new UserAlreadyExist("User already exist! Please pick a different user name.");
     }
 
-    public void registerTeamManager(String name, String mail, String password, boolean isLogged, System system, String[] permissions, Team team) throws Exception
+    public void registerTeamManager(String userName, String password, boolean isLogged, System system, Team team) throws Exception
     {
         User logInTryUser = null;
         try
         {
-            logInTryUser = this.dbConnector.getUser(mail);
+            logInTryUser = this.dbConnector.getUser(userName);
         }
         catch (UserDoesNotExist e)
         {
-            TeamManager newUser = new TeamManager(name, mail,password, isLogged, system, permissions, team);
+            TeamManager newUser = new TeamManager(userName,password, isLogged, system, team);
             this.dbConnector.addUser(newUser, "TeamManager");
             return;
         }
         throw new UserAlreadyExist("User already exist! Please pick a different user name.");
     }
 
-    public void registerTeamOwner(String name, String mail, String password, boolean isLogged, System system) throws Exception
+    public void registerTeamOwner(String userName, String password, boolean isLogged, System system) throws Exception
     {
         User logInTryUser = null;
         try
         {
-            logInTryUser = this.dbConnector.getUser(mail);
+            logInTryUser = this.dbConnector.getUser(userName);
         }
         catch (UserDoesNotExist e)
         {
-            TeamOwner newUser = new TeamOwner(name, mail,password, isLogged, system);
+            TeamOwner newUser = new TeamOwner(userName,password, isLogged, system);
             this.dbConnector.addUser(newUser, "TeamOwner");
             return;
         }

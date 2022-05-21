@@ -5,8 +5,6 @@ import Service.System;
 public abstract class User
 {
 
-    /** -----Base attributes----- */
-    private String name;
     private String userName;
     private String password;
     private boolean isLogged;
@@ -15,18 +13,16 @@ public abstract class User
 
 /** -----Functions----- */
 
-    public User(String name, String userName, String password, boolean isLogged, System system)
+    public User(String userName, String password, boolean isLogged, System system)
     {
-        this.name = name;
         this.userName = userName;
         this.password = password;
         this.isLogged = isLogged;
         this.system = system;
     }
 
-    public User(String name, String userName, String password, boolean isLogged)
+    public User(String userName, String password, boolean isLogged)
     {
-        this.name = name;
         this.userName = userName;
         this.password = password;
         this.isLogged = isLogged;
@@ -42,16 +38,6 @@ public abstract class User
 
 
     /** -----Getters and Setters----- */
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
 
     public String getUserName()
     {

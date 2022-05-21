@@ -25,7 +25,7 @@ public class Guest
 
     public void register(String name, String mail, String password, boolean isLogged) throws Exception
     {
-        system.registerFan(name, mail, password, isLogged, system);
+        system.registerFan(mail, password, isLogged, system);
     }
 
 }
