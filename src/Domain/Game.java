@@ -17,12 +17,17 @@ public class Game
     private Date date;
     private Team home;
     private Team away;
-  private ArrayList<Referee> referees;
-  private Stadium stadium;
-  private ArrayList<EventLog> eventLogs;
-  private MainReferee mainReferee;
-  private League league;
-  private Season season;
+    private ArrayList<Referee> referees;
+    private Stadium stadium;
+    private ArrayList<EventLog> eventLogs;
+    private MainReferee mainReferee;
+    private League league;
+    private Season season;
+
+    public Game(Team home, Team away) {
+        this.home = home;
+        this.away = away;
+    }
 
     public String getScore() {
         return score;

@@ -1,17 +1,15 @@
 package Domain;
 
 import Domain.Users.Referee;
+import javafx.util.Pair;
 
-public class Policy {
+import java.util.ArrayList;
+import java.util.Date;
+
+public abstract class Policy {
 
 
+    public abstract Boolean assignGames(ArrayList<Game> games);
 
-
-
-    public Boolean IsGameLegal(Game game){
-        return(true);
-    }
-    public Boolean IsRefereeLegal(Game game, Referee referee){
-        return(true);
-    }
+    public abstract Boolean assignReferees(ArrayList<Game> games);
 }
