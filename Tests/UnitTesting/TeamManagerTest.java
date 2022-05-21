@@ -20,9 +20,4 @@ class TeamManagerTest
     {
     }
 
-    @Test
-    @DisplayName("I.TeamManager.1 - manage() function test")
-    void manage()
-    {
-    }
 }

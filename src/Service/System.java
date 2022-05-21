@@ -3,10 +3,7 @@ package Service;
 import DataAccess.DBConnector;
 import Domain.*;
 import Domain.Users.*;
-import Exceptions.UserAlreadyExist;
-import Exceptions.UserDoesNotExist;
-import Exceptions.UserIsAlreadyLoggedIn;
-import Exceptions.UserPasswordDoesNotMatch;
+import Exceptions.*;
 
 import java.util.*;
 
@@ -53,6 +50,16 @@ public class System
         }
         catch (UserDoesNotExist e)
         {
+            if (!checkUserName(userName))
+            {
+                throw new UserNameInvalid("Chosen username is invalid, please use only a-z, A-Z, 0-9");
+
+            }
+            if (!checkPassword(password))
+            {
+                throw new PasswordTooWeak("Chosen password is too weak, please add a capital letter");
+            }
+
             Fan newUser = new Fan(userName, password, isLogged, this);
             this.dbConnector.addUser(newUser, "Fan"); // TODO - ADD the user
             return;
@@ -69,6 +76,10 @@ public class System
         }
         catch (UserDoesNotExist e)
         {
+            if (checkPassword(password))
+            {
+                throw new PasswordTooWeak("Chosen password is too weak, please add a capital letter");
+            }
             Coach newUser = new Coach(userName,password, isLogged, system, qualification, position, team);
             this.dbConnector.addUser(newUser, "Coach");
             return;
@@ -85,6 +96,10 @@ public class System
         }
         catch (UserDoesNotExist e)
         {
+            if (checkPassword(password))
+            {
+                throw new PasswordTooWeak("Chosen password is too weak, please add a capital letter");
+            }
             AssociationMember newUser = new AssociationMember(userName,password, isLogged, system);
             this.dbConnector.addUser(newUser, "AssociationMember");
             return;
@@ -101,6 +116,10 @@ public class System
         }
         catch (UserDoesNotExist e)
         {
+            if (checkPassword(password))
+            {
+                throw new PasswordTooWeak("Chosen password is too weak, please add a capital letter");
+            }
             MainReferee newUser = new MainReferee(userName,password, isLogged, system, qualification, eventLogs, games, leagues);
             this.dbConnector.addUser(newUser, "MainReferee");
             return;
@@ -117,6 +136,10 @@ public class System
         }
         catch (UserDoesNotExist e)
         {
+            if (checkPassword(password))
+            {
+                throw new PasswordTooWeak("Chosen password is too weak, please add a capital letter");
+            }
             Player newUser = new Player(userName,password, isLogged, system, birthDay, position, team);
             this.dbConnector.addUser(newUser, "Player");
             return;
@@ -133,6 +156,10 @@ public class System
         }
         catch (UserDoesNotExist e)
         {
+            if (checkPassword(password))
+            {
+                throw new PasswordTooWeak("Chosen password is too weak, please add a capital letter");
+            }
             SystemManager newUser = new SystemManager(userName,password, isLogged, system);
             this.dbConnector.addUser(newUser, "SystemManager");
             return;
@@ -149,6 +176,10 @@ public class System
         }
         catch (UserDoesNotExist e)
         {
+            if (checkPassword(password))
+            {
+                throw new PasswordTooWeak("Chosen password is too weak, please add a capital letter");
+            }
             TeamManager newUser = new TeamManager(userName,password, isLogged, system, team);
             this.dbConnector.addUser(newUser, "TeamManager");
             return;
@@ -165,11 +196,44 @@ public class System
         }
         catch (UserDoesNotExist e)
         {
+            if (checkPassword(password))
+            {
+                throw new PasswordTooWeak("Chosen password is too weak, please add a capital letter");
+            }
             TeamOwner newUser = new TeamOwner(userName,password, isLogged, system);
             this.dbConnector.addUser(newUser, "TeamOwner");
             return;
         }
         throw new UserAlreadyExist("User already exist! Please pick a different user name.");
     }
+
+    public boolean checkPassword(String password)
+    {
+        for (int i = 0; i < password.length(); i++)
+        {
+         if (!Character.isUpperCase(password.charAt(i)))
+         {
+             return false;
+         }
+        }
+        return true;
+    }
+
+    public boolean checkUserName(String username)
+    {
+        for (int i = 0; i < username.length(); i++)
+        {
+            if ((username.charAt(i) < 'a' || username.charAt(i) > 'z') &&
+                (username.charAt(i) < 'A' || username.charAt(i) > 'Z') &&
+                (username.charAt(i) < '0' || username.charAt(i) > '9'))
+            {
+                return  false;
+            }
+        }
+        return true;
+    }
+
+
+
 }
 

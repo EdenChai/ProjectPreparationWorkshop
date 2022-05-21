@@ -36,7 +36,7 @@ class FanIntegrationTest
 
     @Test
     @DisplayName("I.FAN.1 - logOut() function test")
-    void logOut() throws Exception
+    void logOut()
     {
         assertDoesNotThrow(()->system.logIn("Testy", "testytesty"));
         assertTrue(fan.isLogged());

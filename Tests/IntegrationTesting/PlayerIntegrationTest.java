@@ -11,17 +11,19 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class PlayerIntegrationTest
 {
     Player player;
+    Team team;
 
     @BeforeEach
     void setUp()
     {
         DBConnector dbConnector = new DBConnector();
         System system = new System(dbConnector);
-        Team team = new Team("Test");
+        team = new Team("Alpha");
         player = new Player("Testy", "testytesty", false, system,  "9/05/2022", Position.SWEEPER, team);
 
     }
@@ -35,6 +37,8 @@ class PlayerIntegrationTest
     @DisplayName("I.PLAYER.1 - getTeam() function test")
     public void getTeam()
     {
+        Team teamP = player.getTeam();
+        assertEquals(team, teamP);
 
     }
 
@@ -42,7 +46,12 @@ class PlayerIntegrationTest
     @DisplayName("I.PLAYER.2 - setTeam() function test")
     public void setTeam(Team team)
     {
-
+        Team team2 = new Team("Beta");
+        Team teamP = player.getTeam();
+        assertNotEquals(team, teamP);
+        player.setTeam(team2);
+        teamP = player.getTeam();
+        assertEquals(team, teamP);
     }
 
 

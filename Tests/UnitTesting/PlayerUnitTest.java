@@ -50,6 +50,7 @@ class PlayerUnitTest
     @DisplayName("U.PLAYER.2 - getBirthDay() function test")
     void getBirthDay()
     {
+        assertEquals("9/05/2022",player.getBirthDay());
 
     }
 
@@ -57,21 +58,27 @@ class PlayerUnitTest
     @DisplayName("U.PLAYER.3 - setBirthDay() function test")
     void setBirthDay()
     {
-
+        assertNotEquals("10/05/2022",  player.getBirthDay());
+        player.updateDetails("birthDay", "10/05/2022");
+        assertEquals("10/05/2022",  player.getBirthDay());
     }
 
     @Test
-    @DisplayName("U.PLAYER.4 - setPosition() function test")
-    void setPosition()
-    {
-
-    }
-
-    @Test
-    @DisplayName("U.PLAYER.5 - getPosition() function test")
+    @DisplayName("U.PLAYER.4 - getPosition() function test")
     void getPosition()
     {
+        assertEquals(Position.SWEEPER, player.getPosition());
 
     }
+
+    @Test
+    @DisplayName("U.PLAYER.5 - setPosition() function test")
+    void setPosition()
+    {
+        assertNotEquals(Position.STRIKER, player.getPosition());
+        player.updateDetails("position", Position.STRIKER);
+        assertEquals(Position.STRIKER, player.getPosition());
+    }
+
 
 }

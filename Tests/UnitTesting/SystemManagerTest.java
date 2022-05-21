@@ -32,9 +32,4 @@ class SystemManagerTest
     {
     }
 
-    @Test
-    @DisplayName("I.SystemManager.3 - showSystemLog() function test")
-    void showSystemLog()
-    {
-    }
 }
