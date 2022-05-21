@@ -35,7 +35,7 @@ public class RandomPolicy extends Policy{
     public Boolean assignReferees(ArrayList<Game> games) {
         ArrayList<Pair<Referee,Date>> unavailableReferees = new ArrayList<>();
         ArrayList<Game> cantBeAssigned = new ArrayList<>(); //list of games tht there is no available referee in their date
-        HashMap<Date, ArrayList<Referee>> availableReferees = DBConnector.getInstance().getAvailableReferrees();
+        HashMap<Date, ArrayList<Referee>> availableReferees = DBConnector.getInstance().getAvailableReferees();
         for(int i=0; i<games.size(); i++){
             if(availableReferees.containsKey(games.get(i).getDate())){ // if there is an available referee in the game's date
                 Random randomGenerator = new Random();

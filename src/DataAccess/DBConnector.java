@@ -7,6 +7,7 @@ import javafx.util.Pair;
 //import java.sql.*;
 //import java.sql.*;
 import java.sql.*;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,21 +17,23 @@ import java.util.Properties;
 import java.util.logging.Logger;
 
 public class DBConnector {
-    public static final String URL = "jdbc:mysql://localhost:3306/assignment3_db";
-    public static final String USER = "root";
-    public static final String PASS = "Arnon1";
-
-    Statement statement;
-
-
-    private static final DBConnector instance = new DBConnector();
-
+    String URL = "jdbc:mysql://localhost:3306/assignment3_db";
+    String USER = "root";
+    String PASS = "Arnon1";
     Connection connection;
 
+
+    private Statement statement;
+    private static DBConnector instance;
+
+
+
+    public DBConnector()
     {
+
         try {
-            connection = DriverManager.getConnection(URL, USER, PASS);
-            Statement statement = connection.createStatement();
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/assignment3_db", "root", "Arnon1");
+            this.statement = connection.createStatement();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -38,18 +41,37 @@ public class DBConnector {
     }
 
 
+
+
     //private constructor to avoid client applications to use constructor
     public static DBConnector getInstance(){
+        if (instance == null){
+            instance = new DBConnector();
+        }
         return instance;
-    }
-
-    public static Connection getConnection()
-    {
-        return null;
     }
 
     public void DatesAndStadiumsToMakeAsAssigned(ArrayList<Pair<Date, Stadium>>  datesAndStadiums){ // TODO CONNECT WITH DB
         //mark the referees as assigned in the DB
+        ResultSet resultSet = null;
+        try {
+            for (int i = 0; i < datesAndStadiums.size(); i++) {
+                Date date = datesAndStadiums.get(i).getKey();
+                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                String strDate = dateFormat.format(date);
+                String strStadium = datesAndStadiums.get(i).getValue().getName();
+                //System.out.println(strStadium);
+
+                String query = "DELETE FROM stadiums WHERE date= '" + strDate + "' AND stadium= '" + strStadium + "'";
+                statement.executeUpdate(query);
+                System.out.println(strDate + strStadium);
+                //System.out.println("Record deleted successfully");
+            }
+
+            return ;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
     public ArrayList<Referee> RefereesToMakAsAssigned( ArrayList<Pair<Referee,Date>> assignedReferees) { // TODO CONNECT WITH DB
         //mark the referees as assigned in the DB
@@ -77,7 +99,7 @@ public class DBConnector {
             throw new RuntimeException(e);
         }
     }
-    public HashMap<Date, ArrayList<Referee>> getAvailableReferrees(){
+    public HashMap<Date, ArrayList<Referee>> getAvailableReferees(){
         ResultSet resultSet = null;
         try {
             resultSet = statement.executeQuery("select * from referees");
@@ -102,14 +124,7 @@ public class DBConnector {
         return new HashMap<Date, ArrayList<Stadium>>();
     }
 
-    private DBConnector() {
 
-    }
-
-    public ArrayList<Referee> getRefereeByDate(Date date)
-    {
-        return null;
-    }
     /**
      * Get a connection to database
      *
