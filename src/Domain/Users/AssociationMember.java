@@ -2,6 +2,7 @@ package Domain.Users;
 
 import DataAccess.DBConnector;
 import Domain.*;
+import Service.System;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +16,20 @@ public class AssociationMember extends User
     private League[] leagues;
 
     /** -----Functions----- */
+
+
+    public AssociationMember(String name, String userName, String password, boolean isLogged, System system)
+    {
+        super(name, userName, password, isLogged, system);
+    }
+
+    public AssociationMember(String name, String userName, String password, boolean isLogged)
+    {
+        super(name, userName, password, isLogged);
+    }
+
+
+
 
     public League[] getLeagues() {
         return leagues;

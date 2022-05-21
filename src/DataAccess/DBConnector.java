@@ -2,6 +2,9 @@ package DataAccess;
 
 import Domain.Stadium;
 import Domain.Users.Referee;
+import Domain.Users.User;
+import Exceptions.UserAlreadyExist;
+import Exceptions.UserDoesNotExist;
 import javafx.util.Pair;
 
 //import java.sql.*;
@@ -133,6 +136,34 @@ public class DBConnector {
     /**
      * Test Connection
      */
+
+
+    /**
+     Functions for Arie and Eden for Login user case, basic user manipulations
+     */
+
+    public User getUser(String mail) throws UserDoesNotExist
+    {
+        return null; // TODO
+    }
+
+    public void removeUser(String mail)  throws UserDoesNotExist
+    {
+        // TODO
+    }
+
+    public void addUser(User user, String type) throws UserAlreadyExist
+    {
+        // TODO
+    }
+
+    public void updateUser(String mail, User user, String type) throws UserDoesNotExist, UserAlreadyExist
+    {
+        removeUser(mail);
+        addUser(user, type);
+    }
+
+
 
 
 }

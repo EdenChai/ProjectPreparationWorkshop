@@ -1,9 +1,7 @@
 package IntegrationTesting;
 
+import DataAccess.DBConnector;
 import Exceptions.*;
-import DataAccess.DB;
-import DataAccess.DBController;
-import Exceptions.UserDoesNotExist;
 import Service.System;
 import Domain.Users.Fan;
 import org.junit.jupiter.api.AfterEach;
@@ -21,8 +19,8 @@ class FanIntegrationTest
     @BeforeEach
     void setUp()
     {
-        DBController dbController = new DBController();
-        system = new System(dbController);
+        DBConnector dbConnector = new DBConnector();
+        system = new System(dbConnector);
         fan = new Fan("Testy", "Testy@test.test", "testytesty", false, system);
     }
 

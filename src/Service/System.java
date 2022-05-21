@@ -1,7 +1,6 @@
 package Service;
 
-import DataAccess.DBController;
-import DataAccess.UserDao;
+import DataAccess.DBConnector;
 import Domain.*;
 import Domain.Users.*;
 import Exceptions.UserAlreadyExist;
@@ -9,25 +8,24 @@ import Exceptions.UserDoesNotExist;
 import Exceptions.UserIsAlreadyLoggedIn;
 import Exceptions.UserPasswordDoesNotMatch;
 
-import java.sql.SQLException;
 import java.util.*;
 
 public class System
 {
-    public System(DBController dbController)
+    public System(DBConnector dbConnector)
     {
-        this.dbController = dbController;
+        this.dbConnector = dbConnector;
     }
 
     /** -----User log in scenario----- */
 
-    private DBController dbController;
+    private DBConnector dbConnector;
 
 
     public void logIn(String mail, String password) throws Exception
     {
         // Get the user that is trying to log in
-        User logInTryUser = this.dbController.getUser(mail);
+        User logInTryUser = this.dbConnector.getUser(mail);
 
         // If the User is already logged in
         if (logInTryUser.isLogged())
@@ -51,12 +49,12 @@ public class System
         User logInTryUser = null;
         try
         {
-            logInTryUser = this.dbController.getUser(mail);
+            logInTryUser = this.dbConnector.getUser(mail);
         }
         catch (UserDoesNotExist e)
         {
             Fan newUser = new Fan(name, mail, password, isLogged, this);
-            this.dbController.addUser(newUser); // TODO - ADD the user
+            this.dbConnector.addUser(newUser, "Fan"); // TODO - ADD the user
             return;
         }
         throw new UserAlreadyExist("User already exist! Please pick a different user name.");
@@ -67,12 +65,12 @@ public class System
         User logInTryUser = null;
         try
         {
-            logInTryUser = this.dbController.getUser(mail);
+            logInTryUser = this.dbConnector.getUser(mail);
         }
         catch (UserDoesNotExist e)
         {
             Coach newUser = new Coach(name,mail,password, isLogged, system, qualification, position, team);
-            this.dbController.addCoach(newUser);
+            this.dbConnector.addUser(newUser, "Coach");
             return;
         }
         throw new UserAlreadyExist("User already exist! Please pick a different user name.");
@@ -83,12 +81,12 @@ public class System
         User logInTryUser = null;
         try
         {
-            logInTryUser = this.dbController.getUser(mail);
+            logInTryUser = this.dbConnector.getUser(mail);
         }
         catch (UserDoesNotExist e)
         {
             AssociationMember newUser = new AssociationMember(name, mail,password, isLogged, system);
-            this.dbController.addAssociationMember(newUser);
+            this.dbConnector.addUser(newUser, "AssociationMember");
             return;
         }
         throw new UserAlreadyExist("User already exist! Please pick a different user name.");
@@ -99,12 +97,12 @@ public class System
         User logInTryUser = null;
         try
         {
-            logInTryUser = this.dbController.getUser(mail);
+            logInTryUser = this.dbConnector.getUser(mail);
         }
         catch (UserDoesNotExist e)
         {
             MainReferee newUser = new MainReferee(name, mail,password, isLogged, system, qualification, eventLogs, games, leagues);
-            this.dbController.addMainReferee(newUser);
+            this.dbConnector.addUser(newUser, "MainReferee");
             return;
         }
         throw new UserAlreadyExist("User already exist! Please pick a different user name.");
@@ -115,12 +113,12 @@ public class System
         User logInTryUser = null;
         try
         {
-            logInTryUser = this.dbController.getUser(mail);
+            logInTryUser = this.dbConnector.getUser(mail);
         }
         catch (UserDoesNotExist e)
         {
             Player newUser = new Player(name, mail,password, isLogged, system, birthDay, position, team);
-            this.dbController.addPlayer(newUser);
+            this.dbConnector.addUser(newUser, "Player");
             return;
         }
         throw new UserAlreadyExist("User already exist! Please pick a different user name.");
@@ -131,12 +129,12 @@ public class System
         User logInTryUser = null;
         try
         {
-            logInTryUser = this.dbController.getUser(mail);
+            logInTryUser = this.dbConnector.getUser(mail);
         }
         catch (UserDoesNotExist e)
         {
             SystemManager newUser = new SystemManager(name, mail,password, isLogged, system);
-            this.dbController.addSystemManager(newUser);
+            this.dbConnector.addUser(newUser, "SystemManager");
             return;
         }
         throw new UserAlreadyExist("User already exist! Please pick a different user name.");
@@ -147,12 +145,12 @@ public class System
         User logInTryUser = null;
         try
         {
-            logInTryUser = this.dbController.getUser(mail);
+            logInTryUser = this.dbConnector.getUser(mail);
         }
         catch (UserDoesNotExist e)
         {
             TeamManager newUser = new TeamManager(name, mail,password, isLogged, system, permissions, team);
-            this.dbController.addTeamManager(newUser);
+            this.dbConnector.addUser(newUser, "TeamManager");
             return;
         }
         throw new UserAlreadyExist("User already exist! Please pick a different user name.");
@@ -163,63 +161,15 @@ public class System
         User logInTryUser = null;
         try
         {
-            logInTryUser = this.dbController.getUser(mail);
+            logInTryUser = this.dbConnector.getUser(mail);
         }
         catch (UserDoesNotExist e)
         {
             TeamOwner newUser = new TeamOwner(name, mail,password, isLogged, system);
-            this.dbController.addTeamOwner(newUser);
+            this.dbConnector.addUser(newUser, "TeamOwner");
             return;
         }
         throw new UserAlreadyExist("User already exist! Please pick a different user name.");
     }
-
-
-
-
-
-
-
-//    //~~~~~~~~~~~~~SWITCH:~~~~~~~~~~~~~
-//    boolean flag = true;
-//            while(flag)
-//
-//    {
-//        try {
-//            String menu = "\nWelcome to ePark!\n1.Register guardian\n2.Log in\n3.Register additional child\n4.Mange Ticket(add or remove)\n5.Add ride\n6.exit park \n7.exit";
-//            java.lang.System.out.println(menu);
-//            Scanner scan = new Scanner(java.lang.System.in);
-//            String number = scan.next();
-//            switch (number) {
-//                case "1"://Register guardian
-//                    break;
-//
-//                case "2"://Login
-//                    break;
-//
-//                case "3": //Register additional child
-//                    break;
-//
-//                case "4"://Mange Ticket
-//                    break;
-//
-//                case "5"://add ride
-//                    break;
-//
-//                case "6"://exit park
-//                    break;
-//
-//                case "7"://exit
-//
-//                case "Exit":
-//
-//                default:
-//                    java.lang.System.out.println("Please try again");
-//
-//            }
-//        } catch (Exception e) {
-//            java.lang.System.out.println("Error occurred, please try again ");
-//        }
-//    }
 }
 

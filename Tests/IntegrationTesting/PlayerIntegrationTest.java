@@ -1,6 +1,6 @@
 package IntegrationTesting;
 
-import DataAccess.DBController;
+import DataAccess.DBConnector;
 import Domain.Position;
 import Domain.Team;
 import Domain.Users.Player;
@@ -19,9 +19,9 @@ class PlayerIntegrationTest
     @BeforeEach
     void setUp()
     {
-        DBController dbController = new DBController();
-        System system = new System(dbController);
-        Team team = new Team();
+        DBConnector dbConnector = new DBConnector();
+        System system = new System(dbConnector);
+        Team team = new Team("Alpha");
         player = new Player("Testy", "Testy@test.test", "testytesty", false, system,  "9/05/2022", Position.SWEEPER, team);
 
     }
