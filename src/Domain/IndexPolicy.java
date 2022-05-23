@@ -25,9 +25,7 @@ public class IndexPolicy extends Policy {
             unavailableStadiums.add(availableStadiums.get(i));
             availableStadiums.remove(i);
         }
-//        System.out.println(games);
-//        System.out.println(games.get(0).getStadium());
-        DBConnector.getInstance().DatesAndStadiumsToMakeAsAssigned(unavailableStadiums);
+        //DBConnector.getInstance().DatesAndStadiumsToMakeAsAssigned(unavailableStadiums);
         return true;
     }
 
@@ -41,6 +39,10 @@ public class IndexPolicy extends Policy {
             if (availableReferees.containsKey(games.get(i).getDate())) { // if there is an available referee in the game's date
                 Referee theReferee = availableReferees.get(games.get(i).getDate()).get(0);
                 games.get(i).addReferee(theReferee);
+                availableReferees.get(games.get(i).getDate()).remove(0);
+                if (availableReferees.get(games.get(i).getDate()).size() == 0){
+                    availableReferees.remove(games.get(i).getDate());
+                }
                 Pair<Referee, Date> pairRefereeDate = new Pair<>(theReferee, games.get(i).getDate());
                 unavailableReferees.add(pairRefereeDate);
             } else {

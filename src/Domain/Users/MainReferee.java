@@ -17,6 +17,7 @@ public class MainReferee extends Referee
 
     public MainReferee(String userName, String password, boolean isLogged, System system, String qualification, ArrayList<EventLog> eventLogs, ArrayList<Game> games, ArrayList<League> leagues)
     {
+
         super(userName, password, isLogged, system, qualification, eventLogs, games, leagues);
     }
 

@@ -2,9 +2,10 @@ package Domain.Users;
 
 import Service.System;
 
-public abstract class User
+public class User
 {
 
+    /** -----Base attributes----- */
     private String userName;
     private String password;
     private boolean isLogged;
@@ -13,7 +14,7 @@ public abstract class User
 
 /** -----Functions----- */
 
-    public User(String userName, String password, boolean isLogged, System system)
+    public User( String userName, String password, boolean isLogged, System system)
     {
         this.userName = userName;
         this.password = password;
@@ -21,7 +22,7 @@ public abstract class User
         this.system = system;
     }
 
-    public User(String userName, String password, boolean isLogged)
+    public User( String userName, String password, boolean isLogged)
     {
         this.userName = userName;
         this.password = password;
@@ -38,6 +39,8 @@ public abstract class User
 
 
     /** -----Getters and Setters----- */
+
+
 
     public String getUserName()
     {
