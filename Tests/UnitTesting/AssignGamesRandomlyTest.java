@@ -2,6 +2,7 @@ package UnitTesting;
 import DataAccess.DBConnector;
 import Domain.Game;
 import Domain.Team;
+import Domain.Users.AssociationMember;
 import Domain.Users.Fan;
 import Domain.Users.User;
 import Service.System;
@@ -21,10 +22,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class AssignGamesRandomlyTest {
     DBConnector dbConnector;
     System system;
-    ArrayList<Game> arr = new ArrayList<Game>();
+    ArrayList<Game> arr;
     Team PetahTikva = new Team("Petah Tikva");
     Team Rishon = new Team("Rishon");
     Game game1 = new Game(PetahTikva, Rishon);
+    ArrayList<Game> arr2;
+    AssociationMember AM;
+
+    @BeforeEach
+    void createGames() {
+        arr2 = new ArrayList<Game>();
+        arr = new ArrayList<Game>();
+        AM = new AssociationMember("am", "123",true);
+    }
 
     @Test
     @DisplayName("Assign games randomly")
@@ -32,7 +42,7 @@ public class AssignGamesRandomlyTest {
     {
         //TODO make sure there is at least one stadium at the DB
         arr.add(game1);
-        assertDoesNotThrow(()-> system.assignGamesRandomly(arr));
+        assertDoesNotThrow(()-> system.assignGamesRandomly(arr,AM));
     }
 
 
@@ -41,7 +51,8 @@ public class AssignGamesRandomlyTest {
     void AssignRandomEmptyArray()
     {
         ArrayList<Game> arr2 = new ArrayList<Game>();
-        assertThrows(NoGamesToAssign.class,()-> system.assignGamesRandomly(arr2));
+        AssociationMember AM = new AssociationMember("am", "123",true);
+        assertThrows(NoGamesToAssign.class,()-> system.assignGamesRandomly(arr2,AM));
     }
 
 
@@ -50,7 +61,7 @@ public class AssignGamesRandomlyTest {
     @DisplayName("Assign games randomly")
     void AssignRandomNull()
     {
-        assertThrows(NoGamesToAssign.class,()-> system.assignGamesRandomly(null));
+        assertThrows(NoGamesToAssign.class,()-> system.assignGamesRandomly(null,AM));
     }
 
     //TODO test where there are more games than stadiums

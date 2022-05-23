@@ -12,15 +12,7 @@ public abstract class User
     /** -----Derivatives attributes----- */
     private System system;
 
-/** -----Functions----- */
 
-    public User( String userName, String password, boolean isLogged, System system)
-    {
-        this.userName = userName;
-        this.password = password;
-        this.isLogged = isLogged;
-        this.system = system;
-    }
 
     public User( String userName, String password, boolean isLogged)
     {
@@ -29,19 +21,8 @@ public abstract class User
         this.isLogged = isLogged;
     }
 
-    /**
-     * Logs out the user
-     */
-    public void logOut()
-    {
-        //TODO - Implement logout function + change return type
-    }
-
 
     /** -----Getters and Setters----- */
-
-
-
     public String getUserName()
     {
         return userName;

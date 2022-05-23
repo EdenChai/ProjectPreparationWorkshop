@@ -2,6 +2,7 @@ package UnitTesting;
 import DataAccess.DBConnector;
 import Domain.Game;
 import Domain.Team;
+import Domain.Users.AssociationMember;
 import Domain.Users.Fan;
 import Domain.Users.User;
 import Service.System;
@@ -26,6 +27,14 @@ public class AssignRefereesRandomlyTest {
     Team PetahTikva = new Team("Petah Tikva");
     Team Rishon = new Team("Rishon");
     Game game1 = new Game(PetahTikva, Rishon);
+
+
+
+    @BeforeEach
+    void createGames() {
+        ArrayList<Game> arr2 = new ArrayList<Game>();
+        AssociationMember AM = new AssociationMember("am", "123",true);
+    }
 
 
     @Test

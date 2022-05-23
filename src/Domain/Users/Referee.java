@@ -53,69 +53,6 @@ public class Referee extends User
         super(userName, password, isLogged);
     }
 
-
-    public Referee(String userName, String password, boolean isLogged, System system, String qualification, ArrayList<EventLog> eventLogs, ArrayList<Game> games, ArrayList<League> leagues)
-    {
-        super(userName, password, isLogged, system);
-        this.qualification = qualification;
-        this.eventLogs = eventLogs;
-        this.games = games;
-        this.leagues = leagues;
-    }
-
-    public Referee(String userName, String password, boolean isLogged, String qualification, ArrayList<EventLog> eventLogs, ArrayList<Game> games, ArrayList<League> leagues)
-    {
-        super(userName, password, isLogged);
-        this.qualification = qualification;
-        this.eventLogs = eventLogs;
-        this.games = games;
-        this.leagues = leagues;
-    }
-
-
-    /** -----Functions----- */
-
-    /**
-     *
-     * @param field - A string representing which field to update
-     * @param text - A string representing to what update the field to
-     */
-    public void updateDetails(String field, String text)
-    {
-        //TODO - Implement updateDetails function + change return type
-    }
-
-    /**
-     *
-     * @param game - A Game object that is representing a game
-     * Creates a new Event object and adds it to the game event log
-     */
-    public void addEvent(Game game)
-    {
-        //TODO - Implement addEvent function + change return type
-    }
-
-    /**
-     *
-     * @param game - A Game object that is representing a game
-     * Edits final events in the report and makes one to be added to the event report logs
-     */
-    public void editEventReport(Game game)
-    {
-        //TODO - Implement editEventReport function + change return type
-    }
-
-    /**
-     *
-     * @param game - A Game object that is representing a game
-     * @param score - A string representing the game's score results
-     * Sets the resulting score of a game to the given score
-     */
-    public void addResult(Game game, String score)
-    {
-        //TODO - Implement addResult function + change return type
-    }
-
     @Override
     public String toString() {
         return "Referee{" +

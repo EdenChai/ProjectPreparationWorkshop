@@ -2,6 +2,7 @@ package UnitTesting;
 import DataAccess.DBConnector;
 import Domain.Game;
 import Domain.Team;
+import Domain.Users.AssociationMember;
 import Domain.Users.Fan;
 import Domain.Users.User;
 import Service.System;
@@ -25,7 +26,15 @@ public class AssignGamesByIndexTest {
     Team PetahTikva = new Team("Petah Tikva");
     Team Rishon = new Team("Rishon");
     Game game1 = new Game(PetahTikva, Rishon);
+    ArrayList<Game> arr2;
+    AssociationMember AM;
 
+    @BeforeEach
+    void createGames() {
+        arr2 = new ArrayList<Game>();
+        arr = new ArrayList<Game>();
+        AM = new AssociationMember("am", "123",true);
+    }
 
     @Test
     @DisplayName("Assign games by index")
