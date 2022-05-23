@@ -237,7 +237,7 @@ public class DBConnector {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String strDate = dateFormat.format(date);
         try {
-            String query = "DELETE FROM referees WHERE username= '" + username + "' and date=" + strDate + "'";
+            String query = "DELETE FROM referees WHERE username= '" + username + "' and date='" + strDate + "'";
             statement.executeUpdate(query);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -280,7 +280,7 @@ public class DBConnector {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String strDate = dateFormat.format(date);
         try {
-            String query = "DELETE FROM stadiums WHERE name= '" + name + "' and date=" + strDate + "'";
+            String query = "DELETE FROM stadiums WHERE name= '" + name + "' and date='" + strDate + "'";
             statement.executeUpdate(query);
         } catch (Exception e) {
             throw new RuntimeException(e);
