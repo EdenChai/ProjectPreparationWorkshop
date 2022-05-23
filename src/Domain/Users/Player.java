@@ -17,12 +17,19 @@ public class Player extends User
         super(userName, password, isLogged);
     }
 
-    public Player(String userName, String password, boolean isLogged, String birthDay, Position position)
+    public Player(String userName, String password, boolean isLogged, String birthDay, Position position, Team team)
     {
         super(userName, password, isLogged);
         this.birthDay = birthDay;
         this.position = position;
         this.team = team;
+    }
+
+    public Player(String userName, String password, boolean isLogged, String birthDay, Position position)
+    {
+        super(userName, password, isLogged);
+        this.birthDay = birthDay;
+        this.position = position;
     }
 
 

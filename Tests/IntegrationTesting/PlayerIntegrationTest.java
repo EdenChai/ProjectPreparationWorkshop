@@ -24,13 +24,14 @@ class PlayerIntegrationTest
         DBConnector dbConnector = new DBConnector();
         System system = new System(dbConnector);
         team = new Team("Alpha");
-        player = new Player("Testy", "testytesty", false, system,  "9/05/2022", Position.SWEEPER, team);
+        player = new Player("Testy", "testytesty", false,"9/05/2022", Position.SWEEPER, team);
 
     }
 
     @AfterEach
     void tearDown()
     {
+
     }
 
     @Test

@@ -59,10 +59,15 @@ public class DBConnector {
                 DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
                 String strDate = dateFormat.format(date);
                 String strStadium = datesAndStadiums.get(i).getValue().getName();
+                //System.out.println(strStadium);
 
                 String query = "DELETE FROM stadiums WHERE date= '" + strDate + "' AND stadium= '" + strStadium + "'";
                 statement.executeUpdate(query);
+                System.out.println(strDate + strStadium);
+                //System.out.println("Record deleted successfully");
             }
+
+            return ;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
