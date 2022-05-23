@@ -10,7 +10,6 @@ public abstract class User
     private String password;
     private boolean isLogged;
     /** -----Derivatives attributes----- */
-    private System system;
 
 
 
@@ -20,7 +19,6 @@ public abstract class User
         this.password = password;
         this.isLogged = isLogged;
     }
-
 
     /** -----Getters and Setters----- */
     public String getUserName()
@@ -41,16 +39,6 @@ public abstract class User
     public void setPassword(String password)
     {
         this.password = password;
-    }
-
-    public System getSystem()
-    {
-        return system;
-    }
-
-    public void setSystem(System system)
-    {
-        this.system = system;
     }
 
     public boolean isLogged()
