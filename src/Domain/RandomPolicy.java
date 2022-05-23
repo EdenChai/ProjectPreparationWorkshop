@@ -2,6 +2,9 @@ package Domain;
 
 import DataAccess.DBConnector;
 import Domain.Users.Referee;
+import Exceptions.LessStadiumsThanGames;
+import Exceptions.NoGamesToAssign;
+import Exceptions.UserIsAlreadyLoggedIn;
 import javafx.util.Pair;
 
 import java.util.ArrayList;
@@ -13,11 +16,13 @@ public class RandomPolicy extends Policy{
 
 
     @Override
-    public Boolean assignGames(ArrayList<Game> games) {
+    public Boolean assignGames(ArrayList<Game> games) throws LessStadiumsThanGames, NoGamesToAssign {
+        if (games==null || games.size()==0){
+            throw new NoGamesToAssign("No games were sent to be assigned");
+        }
         ArrayList<Pair<Date, Stadium>> availableStadiums = DBConnector.getInstance().getAvailableStadiums();
         if(availableStadiums.size()<games.size()){ // There are not enough stadiums for all the games
-           //TODO THROW EXCEPTION
-            return false;}
+            throw new LessStadiumsThanGames("Not enough stadiums to assign all the games");}
         ArrayList<Pair<Date, Stadium>> unavailableStadiums = new ArrayList<>();
         for(int i=0; i< games.size(); i++) {
             Random randomGenerator = new Random();
@@ -32,9 +37,12 @@ public class RandomPolicy extends Policy{
     }
 
     @Override
-    public Boolean assignReferees(ArrayList<Game> games) {
+    public Boolean assignReferees(ArrayList<Game> games) throws NoGamesToAssign {
+        if (games==null || games.size()==0){
+            throw new NoGamesToAssign("No games were sent to be assigned");
+        }
         ArrayList<Pair<Referee,Date>> unavailableReferees = new ArrayList<>();
-        ArrayList<Game> cantBeAssigned = new ArrayList<>(); //list of games tht there is no available referee in their date
+        ArrayList<Game> cantBeAssigned = new ArrayList<>(); //list of games that there is no available referee in their date
         HashMap<Date, ArrayList<Referee>> availableReferees = DBConnector.getInstance().getAvailableReferees();
         for(int i=0; i<games.size(); i++){
             if(availableReferees.containsKey(games.get(i).getDate())){ // if there is an available referee in the game's date

@@ -19,6 +19,23 @@ public class System
     private DBConnector dbConnector;
 
 
+
+    public void assignGamesRandomly(ArrayList<Game> games) throws Exception {
+        //TODO check if the user that is logged in is association member + call the assosciation member function
+    }
+
+    public void assignGamesByIndex(ArrayList<Game> games) throws Exception {
+        //TODO check if the user that is logged in is association member + call the assosciation member function
+    }
+
+    public void assignRefereesRandomly(ArrayList<Game> games) throws Exception {
+        //TODO check if the user that is logged in is association member + call the assosciation member function
+    }
+
+    public void assignRefereesByIndex(ArrayList<Game> games) throws Exception {
+        //TODO check if the user that is logged in is association member + call the assosciation member function
+    }
+
     public void logIn(String userName, String password) throws Exception
     {
         // Get the user that is trying to log in

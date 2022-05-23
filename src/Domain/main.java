@@ -1,9 +1,12 @@
 package Domain;
 
+import Exceptions.LessStadiumsThanGames;
+import Exceptions.NoGamesToAssign;
+
 import java.util.ArrayList;
 
 public class main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoGamesToAssign, LessStadiumsThanGames {
         IndexPolicy IP = new IndexPolicy();
         ArrayList<Game> games = new ArrayList<Game>();
         Team team1 = new Team("team1");
