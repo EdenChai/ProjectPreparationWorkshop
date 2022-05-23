@@ -20,7 +20,7 @@ public class LogInrAcceptanceTest
     @BeforeEach
     void setUp()
     {
-        dbConnector = new DBConnector();
+        dbConnector = DBConnector.getInstance();
         system = new System(dbConnector);
         try
         {
