@@ -11,6 +11,11 @@ public class Coach extends User
     /** -----Derivatives attributes----- */
     private Team team;
 
+    public Coach(String userName, String password, boolean isLogged)
+    {
+        super(userName, password, isLogged);
+    }
+
     public Coach(String userName, String password, boolean isLogged, String qualification, String position, Team team)
     {
         super(userName, password, isLogged);
@@ -20,16 +25,6 @@ public class Coach extends User
     }
 
 
-    /** -----Functions----- */
 
-    /**
-     *
-     * @param field - A string representing which field to update
-     * @param text - A string representing to what update the field to
-     */
-    public void updateDetails(String field, String text)
-    {
-        //TODO - Implement updateDetails function + change return type
-    }
 
 }

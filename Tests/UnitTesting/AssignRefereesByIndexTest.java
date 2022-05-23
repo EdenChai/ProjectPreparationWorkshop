@@ -2,6 +2,7 @@ package UnitTesting;
 import DataAccess.DBConnector;
 import Domain.Game;
 import Domain.Team;
+import Domain.Users.AssociationMember;
 import Domain.Users.Fan;
 import Domain.Users.User;
 import Service.System;
@@ -34,6 +35,13 @@ public class AssignRefereesByIndexTest {
     Team Rishon = new Team("Rishon");
     Game game1 = new Game(PetahTikva, Rishon);
 
+    @BeforeEach
+    void createGames() {
+        ArrayList<Game> arr2 = new ArrayList<Game>();
+        AssociationMember AM = new AssociationMember("am", "123",true);
+    }
+
+
     @Test
     @DisplayName("Assign games By Index")
     void AssignRefereesByIndexNull() {
@@ -49,8 +57,9 @@ public class AssignRefereesByIndexTest {
     }
 
 
+
     //TODO send games with no date assigned
-    // TODO send games with no referees availavble in their date
+    //TODO send games with no referees availavble in their date
     //TODO send games with no referees availavble only for part of them
     //TODO send games with no dates assigned only for part of them
     //TODO success scenario (date for every game + available referee for every date)
