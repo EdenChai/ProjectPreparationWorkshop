@@ -27,29 +27,31 @@ public class AssignGamesByIndexTest {
     System system;
     ArrayList<Game> arr = new ArrayList<Game>();
     Team PetahTikva = new Team("Petah Tikva");
+    Team BeerSheva = new Team("BeerSheva");
+    Team TLV = new Team("TLV");
     Team Rishon = new Team("Rishon");
     Game game1 = new Game(PetahTikva, Rishon);
-    Referee notAM;
-    AssociationMember AM;
-    Stadium stadium1;
-    Date date1;
-    Date date2;
+    Game game2 = new Game(BeerSheva, TLV);
+    Referee notAM = new Referee("ref1", "222", true);
+    AssociationMember AM = new AssociationMember("am", "123",true);
+    Stadium stadium1 = new Stadium("stadiumName1", "stadiumCity1");
+    Stadium stadium2 = new Stadium("stadiumName2", "stadiumCity2");
+
+    Date date1 = new Date(2022,9,6);
+    Date date2 = new Date(2022, 3, 27);
+    Date date3 = new Date(2022, 8, 18);
+    Date date4 = new Date(2022, 4, 1);
 
     @BeforeEach
     void createGamesEraseDBContent() {
         dbConnector.eraseDBContent();
         arr = new ArrayList<Game>();
-        AM = new AssociationMember("am", "123",true);
-        notAM = new Referee("ref1", "222", true);
-        stadium1 = new Stadium("stadiumName", "stadiumCity");
-        date1 = new Date(2022,9,6);
-        date2 = new Date(2022, 3, 27);
+
     }
 
     @Test
     @DisplayName("Assign games by index")
-    void AssignByIndexSuccessfully()
-    {
+    void AssignByIndexSuccessfully() throws UserAlreadyExist {
         //TODO make sure there is at least one stadium at the DB
         dbConnector.addStadiumDate(stadium1, date1);
         arr.add(game1);
@@ -82,15 +84,50 @@ public class AssignGamesByIndexTest {
 
     @Test
     @DisplayName("Assign games By referee not association member")
-    void AssignByIndexByDifferentUser()
-    {
+    void AssignByIndexByDifferentUser() throws UserAlreadyExist {
         dbConnector.addStadiumDate(stadium1, date1);
         arr.add(game1);
         assertThrows(AssignGameByDifferentUser.class,()-> system.assignGamesByIndex(arr, notAM));
     }
 
+    @Test
+    @DisplayName("Assign games By referee not association member")
+    void AssignByIndexEventLogExists() throws Exception {
+        dbConnector.addStadiumDate(stadium1, date1);
+        arr.add(game1);
+        system.assignGamesByIndex(arr, AM);
+        assertTrue(()-> game1.getEventLogs() != null);
+    }
 
-    //TODO test where there are more stadiums than games
+    @Test
+    @DisplayName("Assign games By referee not association member")
+    void AssignByIndexByNullUser() throws UserAlreadyExist {
+        dbConnector.addStadiumDate(stadium1, date1);
+        arr.add(game1);
+        assertThrows(UserIsNull.class,()-> system.assignGamesByIndex(arr, null));
+    }
+
+    @Test
+    @DisplayName("Assign games not enough stadiums")
+    void AssignByIndexSuccessfullyMultipleGames() throws UserAlreadyExist {
+        arr.add(game1);
+        arr.add(game2);
+        dbConnector.addStadiumDate(stadium1, date1);
+        dbConnector.addStadiumDate(stadium2, date2);
+        dbConnector.addStadiumDate(stadium2, date3);
+        assertDoesNotThrow(()-> system.assignGamesByIndex(arr, AM));
+    }
+
+    @Test
+    @DisplayName("Assign games not enough stadiums")
+    void AssignByIndexSuccessfullyMultipleDates() throws UserAlreadyExist {
+        arr.add(game1);
+        arr.add(game2);
+        dbConnector.addStadiumDate(stadium1, date1);
+        dbConnector.addStadiumDate(stadium1, date2);
+        dbConnector.addStadiumDate(stadium1, date3);
+        assertDoesNotThrow(()-> system.assignGamesByIndex( arr, AM));
+    }
 
 
 }

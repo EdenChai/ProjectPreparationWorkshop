@@ -4,6 +4,7 @@ import Domain.Game;
 import Domain.Team;
 import Domain.Users.AssociationMember;
 import Domain.Users.Fan;
+import Domain.Users.Referee;
 import Domain.Users.User;
 import Service.System;
 import org.junit.jupiter.api.AfterEach;
@@ -27,20 +28,23 @@ public class AssignRefereesRandomlyTest {
     Team PetahTikva = new Team("Petah Tikva");
     Team Rishon = new Team("Rishon");
     Game game1 = new Game(PetahTikva, Rishon);
+    Referee notAM;
+    AssociationMember AM;
 
 
 
     @BeforeEach
     void createGames() {
-        ArrayList<Game> arr2 = new ArrayList<Game>();
-        AssociationMember AM = new AssociationMember("am", "123",true);
+        ArrayList<Game> arr = new ArrayList<Game>();
+        AM = new AssociationMember("am", "123",true);
+        notAM = new Referee("ref1", "222", true);
     }
 
 
     @Test
     @DisplayName("Assign games By Index")
     void AssignRefereesRandomlyNull() {
-        assertThrows(NoGamesToAssign.class, () -> system.assignRefereesRandomly(null));
+        assertThrows(NoGamesToAssign.class, () -> system.assignRefereesRandomly(null,AM));
     }
 
 
@@ -49,7 +53,7 @@ public class AssignRefereesRandomlyTest {
     void AssignRefereesRandomlyEmptyArray()
     {
         ArrayList<Game> arr2 = new ArrayList<Game>();
-        assertThrows(NoGamesToAssign.class,()-> system.assignRefereesRandomly(arr2));
+        assertThrows(NoGamesToAssign.class,()-> system.assignRefereesRandomly(arr2, AM));
     }
 
 }
