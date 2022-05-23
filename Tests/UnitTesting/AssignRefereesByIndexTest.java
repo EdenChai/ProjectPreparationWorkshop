@@ -4,6 +4,7 @@ import Domain.Game;
 import Domain.Team;
 import Domain.Users.AssociationMember;
 import Domain.Users.Fan;
+import Domain.Users.Referee;
 import Domain.Users.User;
 import Service.System;
 import org.junit.jupiter.api.AfterEach;
@@ -35,6 +36,9 @@ public class AssignRefereesByIndexTest {
     Team Rishon = new Team("Rishon");
     Game game1 = new Game(PetahTikva, Rishon);
 
+    Referee notAM = new Referee("ref1", "222", true);
+    AssociationMember AM = new AssociationMember("am", "123",true);
+
     @BeforeEach
     void createGames() {
         ArrayList<Game> arr2 = new ArrayList<Game>();
@@ -45,7 +49,7 @@ public class AssignRefereesByIndexTest {
     @Test
     @DisplayName("Assign games By Index")
     void AssignRefereesByIndexNull() {
-        assertThrows(NoGamesToAssign.class, () -> system.assignRefereesByIndex(null));
+        assertThrows(NoGamesToAssign.class, () -> system.assignRefereesByIndex(null, AM));
     }
 
 
@@ -53,7 +57,7 @@ public class AssignRefereesByIndexTest {
     @DisplayName("Assign games no array")
     void AssignByIndexEmptyArray() {
         ArrayList<Game> arr2 = new ArrayList<Game>();
-        assertThrows(NoGamesToAssign.class, () -> system.assignRefereesByIndex(arr2));
+        assertThrows(NoGamesToAssign.class, () -> system.assignRefereesByIndex(arr2, AM));
     }
 
 
