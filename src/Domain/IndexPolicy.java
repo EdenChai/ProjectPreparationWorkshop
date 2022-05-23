@@ -29,7 +29,7 @@ public class IndexPolicy extends Policy {
             unavailableStadiums.add(availableStadiums.get(i));
             availableStadiums.remove(i);
         }
-        //DBConnector.getInstance().DatesAndStadiumsToMakeAsAssigned(unavailableStadiums);
+        DBConnector.getInstance().DatesAndStadiumsToMakeAsAssigned(unavailableStadiums);
         return true;
     }
 
