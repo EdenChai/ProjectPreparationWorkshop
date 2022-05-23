@@ -2,7 +2,7 @@ package Domain.Users;
 
 import Service.System;
 
-public class User
+public abstract class User
 {
 
     /** -----Base attributes----- */

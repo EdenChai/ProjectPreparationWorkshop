@@ -42,9 +42,6 @@ public class DBConnector {
         }
     }
 
-
-
-
     //private constructor to avoid client applications to use constructor
     public static DBConnector getInstance(){
         if (instance == null){
@@ -70,6 +67,7 @@ public class DBConnector {
             throw new RuntimeException(e);
         }
     }
+
     public void RefereesToMakAsAssigned( ArrayList<Pair<Referee,Date>> assignedReferees) { // TODO CONNECT WITH DB
         //mark the referees as assigned in the DB
         ResultSet resultSet = null;
@@ -87,6 +85,7 @@ public class DBConnector {
             throw new RuntimeException(e);
         }
     }
+
     public ArrayList<Pair<Date, Stadium>> getAvailableStadiums(){
         ResultSet resultSet = null;
         try {
@@ -109,6 +108,7 @@ public class DBConnector {
             throw new RuntimeException(e);
         }
     }
+
     public HashMap<Date, ArrayList<Referee>> getAvailableReferees(){
         ResultSet resultSet = null;
         try {
@@ -135,12 +135,8 @@ public class DBConnector {
         }
     }
 
-    public HashMap<Date, ArrayList<Stadium>> getStadiumsAndDates(){ //TODO CONNECT WITH DB
-        return new HashMap<Date, ArrayList<Stadium>>();
-    }
-
     /**
-     Functions for Arie and Eden for Login user case, basic user manipulations
+     basic user manipulations
      */
 
     public User getUser(String username) throws UserDoesNotExist {
@@ -231,6 +227,93 @@ public class DBConnector {
         addUser(user, type);
     }
 
+    /**
+     basic referee-date manipulations
+     */
+
+    public void removeRefereeDate(String username, Date date)  throws UserDoesNotExist
+    {
+        ResultSet resultSet = null;
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String strDate = dateFormat.format(date);
+        try {
+            String query = "DELETE FROM referees WHERE username= '" + username + "' and date=" + strDate + "'";
+            statement.executeUpdate(query);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void addRefereeDate(Referee user, Date date) throws UserAlreadyExist
+    {
+        ResultSet resultSet = null;
+        String username = user.getUserName();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String strDate = dateFormat.format(date);
+
+        try {
+            String query = "INSERT INTO `assignment3_db`.`referees`\n" +
+                    "(`date`,\n" +
+                    "`name`)\n" +
+                    "VALUES\n" +
+                    "('"+ strDate +"',\n" +
+                    "'"+username+"');";
+            statement.executeUpdate(query);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateRefereeDate(Referee user, Date date, Date newDate) throws UserDoesNotExist, UserAlreadyExist
+    {
+        removeRefereeDate(user.getUserName(), date);
+        addRefereeDate(user, newDate);
+    }
+
+    /**
+     basic stadium-date manipulations
+     */
+
+    public void removeStadiumDate(String name, Date date)  throws UserDoesNotExist
+    {
+        ResultSet resultSet = null;
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String strDate = dateFormat.format(date);
+        try {
+            String query = "DELETE FROM stadiums WHERE name= '" + name + "' and date=" + strDate + "'";
+            statement.executeUpdate(query);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void addStadiumDate(Stadium stadium, Date date, String city) throws UserAlreadyExist
+    {
+        ResultSet resultSet = null;
+        String username = stadium.getName();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String strDate = dateFormat.format(date);
+
+        try {
+            String query = "INSERT INTO `assignment3_db`.`stadiums`\n" +
+                    "(`stadium`,\n" +
+                    "`date`,\n" +
+                    "`city`)\n" +
+                    "VALUES\n" +
+                    "(" +username+",\n" +
+                    strDate +",\n" +
+                    city + ";\n";
+            statement.executeUpdate(query);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateStadiumDate(Stadium stadium, Date date, String city, Date newDate, String newCity) throws UserDoesNotExist, UserAlreadyExist
+    {
+        removeStadiumDate(stadium.getName(), date);
+        addStadiumDate(stadium, newDate, newCity);
+    }
 
 
 
