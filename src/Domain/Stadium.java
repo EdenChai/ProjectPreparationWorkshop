@@ -35,4 +35,8 @@ public class Stadium
    public String getName() {
       return name;
    }
+
+   public String getCity() {
+      return city;
+   }
 }
