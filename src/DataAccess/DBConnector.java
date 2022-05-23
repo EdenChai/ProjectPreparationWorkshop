@@ -1,8 +1,7 @@
 package DataAccess;
 
 import Domain.Stadium;
-import Domain.Users.Referee;
-import Domain.Users.User;
+import Domain.Users.*;
 import Exceptions.UserAlreadyExist;
 import Exceptions.UserDoesNotExist;
 import javafx.util.Pair;
@@ -152,17 +151,38 @@ public class DBConnector {
             String string_username = null;
             String string_password = null;
             String string_isLogged = null;
+            String string_type = null;
             boolean isLogged = false;
             while(resultSet.next()) {
                 string_username = resultSet.getString("username");
                 string_password = resultSet.getString("password");
                 string_isLogged = resultSet.getString("isLogged");
+                string_type = resultSet.getString("type");
                 //System.out.println(isLogged);
                 if (string_isLogged == "1"){
                     isLogged = true;
                 }
             }
-            User user = new User(string_username, string_password, isLogged);
+            User user = null;
+            if (string_type == "AssociationMember"){
+                user = new AssociationMember(string_username, string_password, isLogged);
+            } else if (string_type == "Coach"){
+                user = new Coach(string_username, string_password, isLogged);
+            } else if (string_type == "Fan"){
+                user = new Fan(string_username, string_password, isLogged);
+            } else if (string_type == "MainReferee"){
+                user = new MainReferee(string_username, string_password, isLogged);
+            } else if (string_type == "Player"){
+                user = new Player(string_username, string_password, isLogged);
+            } else if (string_type == "Referee"){
+                user = new Referee(string_username, string_password, isLogged);
+            } else if (string_type == "SystemManager"){
+                user = new SystemManager(string_username, string_password, isLogged);
+            } else if (string_type == "TeamManager"){
+                user = new TeamManager(string_username, string_password, isLogged);
+            } else if (string_type == "TeamOwner"){
+                user = new TeamOwner(string_username, string_password, isLogged);
+            }
             return user;
         } catch (SQLException e) {
             throw new RuntimeException(e);
