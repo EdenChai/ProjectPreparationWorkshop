@@ -28,6 +28,7 @@ public class Game
         this.home = home;
         this.away = away;
         this.eventLogs = new ArrayList<EventLog>();
+        this.referees = new ArrayList<Referee>();
     }
 
     public String getScore() {
@@ -116,13 +117,17 @@ public class Game
 
     @Override
     public String toString() {
+        String stadiumName = null;
+        if (this.stadium != null){
+            stadiumName = this.stadium.getName();
+        }
         return "Game{" +
                 "score='" + score + '\'' +
                 ", date=" + date +
                 ", home=" + home +
                 ", away=" + away +
                 ", referees=" + referees +
-                ", stadium=" + stadium.getName() +
+                ", stadium=" + stadiumName +
                 ", eventLogs=" + eventLogs +
                 ", mainReferee=" + mainReferee +
                 ", league=" + league +

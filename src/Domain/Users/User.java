@@ -5,37 +5,42 @@ import Service.System;
 public abstract class User
 {
 
+    /** -----Base attributes----- */
     private String userName;
     private String password;
     private boolean isLogged;
     /** -----Derivatives attributes----- */
-    private static System system;
+    private System system;
 
 /** -----Functions----- */
 
-    public User(String userName, String password, boolean isLogged)
+    public User( String userName, String password, boolean isLogged, System system)
+    {
+        this.userName = userName;
+        this.password = password;
+        this.isLogged = isLogged;
+        this.system = system;
+    }
+
+    public User( String userName, String password, boolean isLogged)
     {
         this.userName = userName;
         this.password = password;
         this.isLogged = isLogged;
     }
 
-    public static void logIn(String userName, String password) throws Exception
+    /**
+     * Logs out the user
+     */
+    public void logOut()
     {
-        system.logIn(userName,password);
-
+        //TODO - Implement logout function + change return type
     }
-
-//    /**
-//     * Logs out the user
-//     */
-//    public void logOut()
-//    {
-//        //TODO - Implement logout function + change return type
-//    }
 
 
     /** -----Getters and Setters----- */
+
+
 
     public String getUserName()
     {

@@ -48,6 +48,20 @@ public class Referee extends User
         this.leagues = leagues;
     }
 
+    public Referee(String userName, String password, boolean isLogged)
+    {
+        super(userName, password, isLogged);
+    }
+
+
+    public Referee(String userName, String password, boolean isLogged, System system, String qualification, ArrayList<EventLog> eventLogs, ArrayList<Game> games, ArrayList<League> leagues)
+    {
+        super(userName, password, isLogged, system);
+        this.qualification = qualification;
+        this.eventLogs = eventLogs;
+        this.games = games;
+        this.leagues = leagues;
+    }
 
     public Referee(String userName, String password, boolean isLogged, String qualification, ArrayList<EventLog> eventLogs, ArrayList<Game> games, ArrayList<League> leagues)
     {
@@ -102,4 +116,10 @@ public class Referee extends User
         //TODO - Implement addResult function + change return type
     }
 
+    @Override
+    public String toString() {
+        return "Referee{" +
+                "name='" + this.getUserName() + '\'' +
+                '}';
+    }
 }

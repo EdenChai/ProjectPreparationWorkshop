@@ -76,9 +76,22 @@ public class DBConnector {
             throw new RuntimeException(e);
         }
     }
-    public ArrayList<Referee> RefereesToMakAsAssigned( ArrayList<Pair<Referee,Date>> assignedReferees) { // TODO CONNECT WITH DB
+    public void RefereesToMakAsAssigned( ArrayList<Pair<Referee,Date>> assignedReferees) { // TODO CONNECT WITH DB
         //mark the referees as assigned in the DB
-        return null;
+        ResultSet resultSet = null;
+        try {
+            for (int i = 0; i < assignedReferees.size(); i++) {
+                Date date = assignedReferees.get(i).getValue();
+                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                String strDate = dateFormat.format(date);
+                String strReferees = assignedReferees.get(i).getKey().getUserName();
+
+                String query = "DELETE FROM referees WHERE date= '" + strDate + "' AND name= '" + strReferees + "'";
+                statement.executeUpdate(query);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
     public ArrayList<Pair<Date, Stadium>> getAvailableStadiums(){
         ResultSet resultSet = null;
@@ -110,15 +123,20 @@ public class DBConnector {
             while(resultSet.next()){
                 String string_date = resultSet.getString("date");
                 String string_name = resultSet.getString("name");
-
                 Date date= new SimpleDateFormat("dd-MM-yyyy").parse(string_date);
-                //Referee referee = new Referee(string_name);
-                referees_dates.put(date, new ArrayList<Referee>());
+                User user = getUser(string_name);
+                Referee referee = new Referee(user.getUserName(), user.getPassword(), user.isLogged());
+                if (!referees_dates.containsKey(date)) {
+                    referees_dates.put(date, new ArrayList<Referee>());
+                }
+                referees_dates.get(date).add(referee);
             }
             return referees_dates;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ParseException e) {
+            throw new RuntimeException(e);
+        } catch (UserDoesNotExist e) {
             throw new RuntimeException(e);
         }
     }
@@ -127,45 +145,76 @@ public class DBConnector {
         return new HashMap<Date, ArrayList<Stadium>>();
     }
 
-
-    /**
-     * Get a connection to database
-     *
-     * @return Connection object
-     */
-    /**
-     * Test Connection
-     */
-
-
     /**
      Functions for Arie and Eden for Login user case, basic user manipulations
      */
 
-    public User getUser(String mail) throws UserDoesNotExist
-    {
-        return null; // TODO
+    public User getUser(String username) throws UserDoesNotExist {
+        ResultSet resultSet = null;
+        try {
+            resultSet = statement.executeQuery("select * from users where username='" + username + "'");
+            //HashMap<Date, ArrayList<Referee>> referees_dates = new HashMap<Date, ArrayList<Referee>>();
+            String string_username = null;
+            String string_password = null;
+            String string_isLogged = null;
+            boolean isLogged = false;
+            while(resultSet.next()) {
+                string_username = resultSet.getString("username");
+                string_password = resultSet.getString("password");
+                string_isLogged = resultSet.getString("isLogged");
+                //System.out.println(isLogged);
+                if (string_isLogged == "1"){
+                    isLogged = true;
+                }
+            }
+            User user = new User(string_username, string_password, isLogged);
+            return user;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new UserDoesNotExist("user does not exist");
+        }
     }
 
-    //region Outdated
+    public void removeUser(String username)  throws UserDoesNotExist
+    {
+        ResultSet resultSet = null;
+        try {
+            String query = "DELETE FROM users WHERE username= '" + username + "'";
+            statement.executeUpdate(query);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-//    public void removeUser(String mail)  throws UserDoesNotExist
-//    {
-//        // TODO
-//    }
-//
-//    public void addUser(User user, String type) throws UserAlreadyExist
-//    {
-//        // TODO
-//    }
-//
-//    public void updateUser(String mail, User user, String type) throws UserDoesNotExist, UserAlreadyExist
-//    {
-//        removeUser(mail);
-//        addUser(user, type);
-//    }
+    public void addUser(User user, String type) throws UserAlreadyExist
+    {
+        ResultSet resultSet = null;
+        String username = user.getUserName();
+        String password = user.getPassword();
+        boolean isLogged = user.isLogged();
+        try {
+            String query = "INSERT INTO `assignment3_db`.`users`\n" +
+                    "(`username`,\n" +
+                    "`password`,\n" +
+                    "`isLogged`,\n" +
+                    "`type`)\n" +
+                    "VALUES\n" +
+                    "('"+username+"',\n" +
+                    "'"+password+"',\n" +
+                    isLogged + ",\n" +
+                    "'"+ type +"');";
+            statement.executeUpdate(query);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-    //endregion
+    public void updateUser(String mail, User user, String type) throws UserDoesNotExist, UserAlreadyExist
+    {
+        removeUser(mail);
+        addUser(user, type);
+    }
 
 
 
