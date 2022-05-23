@@ -9,6 +9,13 @@ public class TeamManager extends User
     /** -----Derivatives attributes----- */
     private Team team;
 
+    public TeamManager(String userName, String password, boolean isLogged)
+    {
+        super(userName, password, isLogged);
+
+    }
+
+
     public TeamManager(String userName, String password, boolean isLogged, System system, Team team)
     {
         super(userName, password, isLogged, system);

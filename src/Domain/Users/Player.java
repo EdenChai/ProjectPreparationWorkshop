@@ -12,12 +12,10 @@ public class Player extends User
     /** -----Derivatives attributes----- */
     private Team team;
 
-    public Player(String userName, String password, boolean isLogged, System system, String birthDay, Position position, Team team)
+    public Player(String userName, String password, boolean isLogged)
     {
-        super(userName, password, isLogged, system);
-        this.birthDay = birthDay;
-        this.position = position;
-        this.team = team;
+        super(userName, password, isLogged);
+
     }
 
     public Player(String userName, String password, boolean isLogged, String birthDay, Position position)

@@ -11,6 +11,11 @@ public class Coach extends User
     /** -----Derivatives attributes----- */
     private Team team;
 
+    public Coach(String userName, String password, boolean isLogged)
+    {
+        super(userName, password, isLogged);
+    }
+
     public Coach(String userName, String password, boolean isLogged, System system, String qualification, String position, Team team)
     {
         super(userName, password, isLogged, system);

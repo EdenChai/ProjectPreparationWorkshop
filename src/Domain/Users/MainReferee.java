@@ -15,10 +15,10 @@ import java.util.ArrayList;
 public class MainReferee extends Referee
 {
 
-    public MainReferee(String userName, String password, boolean isLogged, System system, String qualification, ArrayList<EventLog> eventLogs, ArrayList<Game> games, ArrayList<League> leagues)
+    public MainReferee(String userName, String password, boolean isLogged)
     {
 
-        super(userName, password, isLogged, system, qualification, eventLogs, games, leagues);
+        super(userName, password, isLogged);
     }
 
     public MainReferee(String userName, String password, boolean isLogged, String qualification, ArrayList<EventLog> eventLogs, ArrayList<Game> games, ArrayList<League> leagues)
