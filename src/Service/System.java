@@ -20,7 +20,14 @@ public class System
 
 
 
-    public void assignGamesRandomly(ArrayList<Game> games) throws Exception {
+    public void assignGamesRandomly(ArrayList<Game> games, User user) throws Exception {
+        if(!(user instanceof AssociationMember)){
+            //TODO exception
+        }
+        if(!user.isLogged()){
+            throw new UserIsNotLoggedIn("User is not logged in");
+        }
+        ((AssociationMember)user).assignGamesRandomly(games);
         //TODO check if the user that is logged in is association member + call the assosciation member function
     }
 
