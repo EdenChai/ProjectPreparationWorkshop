@@ -147,21 +147,25 @@ public class DBConnector {
         return null; // TODO
     }
 
-    public void removeUser(String mail)  throws UserDoesNotExist
-    {
-        // TODO
-    }
+    //region Outdated
 
-    public void addUser(User user, String type) throws UserAlreadyExist
-    {
-        // TODO
-    }
+//    public void removeUser(String mail)  throws UserDoesNotExist
+//    {
+//        // TODO
+//    }
+//
+//    public void addUser(User user, String type) throws UserAlreadyExist
+//    {
+//        // TODO
+//    }
+//
+//    public void updateUser(String mail, User user, String type) throws UserDoesNotExist, UserAlreadyExist
+//    {
+//        removeUser(mail);
+//        addUser(user, type);
+//    }
 
-    public void updateUser(String mail, User user, String type) throws UserDoesNotExist, UserAlreadyExist
-    {
-        removeUser(mail);
-        addUser(user, type);
-    }
+    //endregion
 
 
 

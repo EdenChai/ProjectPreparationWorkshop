@@ -24,7 +24,7 @@ public class LogInrAcceptanceTest
         system = new System(dbConnector);
         try
         {
-        system.registerFan("validname", "HardPass#@!", false, system);
+        //system.registerFan("validname", "HardPass#@!", false, system); TODO add user to database/make sure there is one
         }
         catch (Exception ignored)
         {
@@ -37,7 +37,9 @@ public class LogInrAcceptanceTest
     {
         try
         {
-            dbConnector.removeUser("validname");
+            User user =dbConnector.getUser("validname");
+            user.setLogged(false);
+            //TODO - add update function if needed
         }
         catch (UserDoesNotExist ignored)
         {
@@ -49,7 +51,7 @@ public class LogInrAcceptanceTest
     @DisplayName("A.LogIn.1 - success test")
     void success()
     {
-        assertDoesNotThrow(()-> system.logIn("validname", "HardPass#@!"));
+        assertDoesNotThrow(()-> User.logIn("validname", "HardPass#@!"));
     }
 
     @Test

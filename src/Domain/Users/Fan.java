@@ -13,12 +13,6 @@ public class Fan extends User
      * @param system
      */
 
-
-    public Fan(String userName, String password, boolean isLogged, System system)
-    {
-        super(userName, password, isLogged, system);
-    }
-
     public Fan(String userName, String password, boolean isLogged)
     {
         super(userName, password, isLogged);

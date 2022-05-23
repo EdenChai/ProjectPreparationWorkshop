@@ -27,19 +27,19 @@ class FanUnitTest
     {
     }
 
-    @Test
-    @DisplayName("U.FAN.1 - updateDetails() function test")
-    void updateDetails()
-    {
-        fan.updateDetails("userName", "TestyReborn");
-        String name = fan.getUserName();
-        assertEquals("TestyReborn", name);
-
-        fan.updateDetails("password", "testytestyreborn");
-        String pass = fan.getPassword();
-        assertEquals("testytestyreborn", pass);
-
-    }
+//    @Test
+//    @DisplayName("U.FAN.1 - updateDetails() function test")
+//    void updateDetails()
+//    {
+//        fan.updateDetails("userName", "TestyReborn");
+//        String name = fan.getUserName();
+//        assertEquals("TestyReborn", name);
+//
+//        fan.updateDetails("password", "testytestyreborn");
+//        String pass = fan.getPassword();
+//        assertEquals("testytestyreborn", pass);
+//
+//    }
 
     //Test the basic User objects functions
 

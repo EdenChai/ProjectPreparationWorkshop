@@ -12,12 +12,6 @@ public class AssociationMember extends User
 
     /** -----Functions----- */
 
-
-    public AssociationMember(String userName, String password, boolean isLogged, System system)
-    {
-        super(userName, password, isLogged, system);
-    }
-
     public AssociationMember(String userName, String password, boolean isLogged)
     {
         super(userName, password, isLogged);
@@ -59,25 +53,25 @@ public class AssociationMember extends User
     public void addReferee(Game game) throws Exception {
 //        if (game.getDate()==null || game.getStadium()==null){
 //            throw new Exception("pre-conditions are not met");
-//
-//        }
-//
-//        if (game.getSeason().getPolicy()==null){
-//            throw new Exception("policy is not existed :(");
-//        }
-//
-//        ArrayList<Referee> referees;
-//        referees = DBConnector.getInstance().getRefereeByDate(game.getDate());
-//        Referee referee = null;
-//        if (referees.size()>0){
-//            referee= referees.get(0);  // the first referee is chosen
-//        }
-//        else{
-//            throw new Exception("no available referee for this game");
-//        }
-//
-//        if (game.getSeason().getPolicy().IsRefereeLegal(game, referee)) {
-//            throw new Exception("the game doesn't match the policy");
+////
+////        }
+////
+////        if (game.getSeason().getPolicy()==null){
+////            throw new Exception("policy is not existed :(");
+////        }
+////
+////        ArrayList<Referee> referees;
+////        referees = DBConnector.getInstance().getRefereeByDate(game.getDate());
+////        Referee referee = null;
+////        if (referees.size()>0){
+////            referee= referees.get(0);  // the first referee is chosen
+////        }
+////        else{
+////            throw new Exception("no available referee for this game");
+////        }
+////
+////        if (game.getSeason().getPolicy().IsRefereeLegal(game, referee)) {
+////            throw new Exception("the game doesn't match the policy");
 //        }
 //        else{
 //            game.addReferee(referee);

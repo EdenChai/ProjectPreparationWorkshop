@@ -17,15 +17,11 @@ public class Guest
      * @param password - A string representing the user password
      *  Logs in the user
      */
-    public void login(String userName, String password) throws Exception
-    {
-        system.logIn(userName,password);
-    }
 
 
-    public void register(String name, String mail, String password, boolean isLogged) throws Exception
-    {
-        system.registerFan(mail, password, isLogged, system);
-    }
+//    public void register(String name, String mail, String password, boolean isLogged) throws Exception
+//    {
+//        system.registerFan(mail, password, isLogged, system);
+//    }
 
 }

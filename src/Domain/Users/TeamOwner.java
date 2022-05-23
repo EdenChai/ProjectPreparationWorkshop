@@ -10,12 +10,6 @@ public class TeamOwner extends User
     /** -----Derivatives attributes----- */
     private Team team;
 
-
-    public TeamOwner(String userName, String password, boolean isLogged, System system)
-    {
-        super(userName, password, isLogged, system);
-    }
-
     public TeamOwner(String userName, String password, boolean isLogged)
     {
         super(userName, password, isLogged);

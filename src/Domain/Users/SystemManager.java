@@ -8,17 +8,11 @@ public class SystemManager extends User
     /** -----Derivatives attributes----- */
     private System system;
 
-    public SystemManager(String userName, String password, boolean isLogged, System system)
-    {
-        super(userName, password, isLogged, system);
-        this.system = system;
-    }
-
     public SystemManager(String userName, String password, boolean isLogged)
     {
         super(userName, password, isLogged);
+        this.system = system;
     }
-
 
     /** -----Functions----- */
 

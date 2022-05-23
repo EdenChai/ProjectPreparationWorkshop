@@ -62,10 +62,10 @@ class UnitTestingExample
 
     }
 
-    @Test
-    void timeoutNotExceeded() {
-        assertTimeout(ofMinutes(1), () -> user.logOut());
-    }
+//    @Test
+//    void timeoutNotExceeded() {
+//        assertTimeout(ofMinutes(1), () -> user.logOut());
+//    }
 
 
 
