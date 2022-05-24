@@ -50,7 +50,7 @@ public class AssignGamesByIndexTest {
     }
 
     @Test
-    @DisplayName("Assign games by index")
+    @DisplayName("U.INDEXPOLICY.1 - AssignByIndexSuccessfully() function test")
     void AssignByIndexSuccessfully() throws UserAlreadyExist {
         dbConnector.addStadiumDate(stadium1, date1);
         arr.add(game1);
@@ -58,7 +58,7 @@ public class AssignGamesByIndexTest {
     }
 
     @Test
-    @DisplayName("Assign games not enough stadiums")
+    @DisplayName("U.INDEXPOLICY.2 - AssignByIndexNotEnoughStadiums() function test")
     void AssignByIndexNotEnoughStadiums()
     {
         arr.add(game1);
@@ -66,7 +66,7 @@ public class AssignGamesByIndexTest {
     }
 
     @Test
-    @DisplayName("Assign games By Index NoGamesToAssign")
+    @DisplayName("U.INDEXPOLICY.3 - AssignByIndexEmptyArray() function test")
     void AssignByIndexEmptyArray()
     {
         ArrayList<Game> arr2 = new ArrayList<Game>(); //array list is empty
@@ -75,14 +75,14 @@ public class AssignGamesByIndexTest {
 
 
     @Test
-    @DisplayName("Assign games By Index")
+    @DisplayName("U.INDEXPOLICY.4 - AssignByIndexNull() function test")
     void AssignByIndexNull()
     {
         assertThrows(NoGamesToAssign.class,()-> system.assignGamesByIndex(null, AM));
     }
 
     @Test
-    @DisplayName("Assign games By referee not association member")
+    @DisplayName("U.INDEXPOLICY.5 - AssignByIndexByDifferentUser() function test")
     void AssignByIndexByDifferentUser() throws UserAlreadyExist {
         dbConnector.addStadiumDate(stadium1, date1);
         arr.add(game1);
@@ -90,7 +90,7 @@ public class AssignGamesByIndexTest {
     }
 
     @Test
-    @DisplayName("Assign games By referee not association member")
+    @DisplayName("U.INDEXPOLICY.6 - AssignByIndexEventLogExists() function test")
     void AssignByIndexEventLogExists() throws Exception {
         dbConnector.addStadiumDate(stadium1, date1);
         arr.add(game1);
@@ -99,7 +99,7 @@ public class AssignGamesByIndexTest {
     }
 
     @Test
-    @DisplayName("Assign games By referee not association member")
+    @DisplayName("U.INDEXPOLICY.7 - AssignByIndexByNullUser() function test")
     void AssignByIndexByNullUser() throws UserAlreadyExist {
         dbConnector.addStadiumDate(stadium1, date1);
         arr.add(game1);
@@ -107,7 +107,7 @@ public class AssignGamesByIndexTest {
     }
 
     @Test
-    @DisplayName("Assign games not enough stadiums")
+    @DisplayName("U.INDEXPOLICY.8 - AssignByIndexSuccessfullyMultipleGames() function test")
     void AssignByIndexSuccessfullyMultipleGames() throws UserAlreadyExist {
         arr.add(game1);
         arr.add(game2);
@@ -118,7 +118,7 @@ public class AssignGamesByIndexTest {
     }
 
     @Test
-    @DisplayName("Assign games not enough stadiums")
+    @DisplayName("U.INDEXPOLICY.9 - AssignByIndexSuccessfullyMultipleDates() function test")
     void AssignByIndexSuccessfullyMultipleDates() throws UserAlreadyExist {
         arr.add(game1);
         arr.add(game2);

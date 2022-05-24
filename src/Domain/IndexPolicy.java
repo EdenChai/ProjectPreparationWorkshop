@@ -2,6 +2,7 @@ package Domain;
 
 import DataAccess.DBConnector;
 import Domain.Users.Referee;
+import Exceptions.GameWithNoDate;
 import Exceptions.LessStadiumsThanGames;
 import Exceptions.NoGamesToAssign;
 import javafx.util.Pair;
@@ -35,7 +36,7 @@ public class IndexPolicy extends Policy {
 
 
     @Override
-    public Boolean assignReferees(ArrayList<Game> games) throws NoGamesToAssign {
+    public Boolean assignReferees(ArrayList<Game> games) throws NoGamesToAssign, GameWithNoDate {
         if (games==null || games.size()==0){
             throw new NoGamesToAssign("No games were sent to be assigned");
         }
@@ -43,6 +44,9 @@ public class IndexPolicy extends Policy {
         ArrayList<Game> cantBeAssigned = new ArrayList<>(); //list of games tht there is no available referee in their date
         HashMap<Date, ArrayList<Referee>> availableReferees = DBConnector.getInstance().getAvailableReferees();
         for (int i = 0; i < games.size(); i++) {
+            if(games.get(i).getDate()==null){
+                throw new GameWithNoDate("Can't assign referee without Date");
+            }
             if (availableReferees.containsKey(games.get(i).getDate())) { // if there is an available referee in the game's date
                 Referee theReferee = availableReferees.get(games.get(i).getDate()).get(0);
                 games.get(i).addReferee(theReferee);
