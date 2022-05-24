@@ -63,19 +63,19 @@ public class AssignRefereesByIndexTest {
 
 
     @Test
-    @DisplayName("Assign games By Index")
+    @DisplayName("U.INDEXPOLICY.10 - AssignRefereesGamesAreNull() function test")
     void AssignRefereesGamesAreNull() {
         assertThrows(NoGamesToAssign.class, () -> system.assignRefereesByIndex(null, AM));
     }
 
     @Test
-    @DisplayName("Assign games no array")
+    @DisplayName("U.INDEXPOLICY.11 - AssignEmptyArray() function test")
     void AssignEmptyArray() {
         assertThrows(NoGamesToAssign.class, () -> system.assignRefereesByIndex(arr, AM));
     }
 
     @Test
-    @DisplayName("Assign games By referee not association member")
+    @DisplayName("U.INDEXPOLICY.12 - AssignByIndexByDifferentUser() function test")
     void AssignByIndexByDifferentUser() throws Exception {
         /*add games to array*/
         arr.add(game1);
@@ -85,7 +85,7 @@ public class AssignRefereesByIndexTest {
     }
 
     @Test
-    @DisplayName("Assign games By referee not association member")
+    @DisplayName("U.INDEXPOLICY.13 - AssignByIndexByNullUser() function test")
     void AssignByIndexByNullUser() throws Exception {
         /*add available stadiums by date to DB*/
         dbConnector.addStadiumDate(stadium1, date1);
@@ -99,8 +99,8 @@ public class AssignRefereesByIndexTest {
 
 
     @Test
-    @DisplayName("Assign games By referee not association member")
-    void AssignGameWithNoDate() throws Exception {
+    @DisplayName("U.INDEXPOLICY.14 - AssignRefereeToGameWithNoDate() function test")
+    void AssignRefereeToGameWithNoDate() throws Exception {
         /*add available stadiums by date to DB*/
         dbConnector.addStadiumDate(stadium1, date1);
         /*add games to array*/
@@ -114,7 +114,7 @@ public class AssignRefereesByIndexTest {
 
 
     @Test
-    @DisplayName("U.INDEXPOLICY.1 - AssignRandomSuccessfully() function test")
+    @DisplayName("U.INDEXPOLICY.15 - AssignWithNoReferees() function test")
     void AssignWithNoReferees() throws Exception {
         /*add games to array*/
         arr.add(game1);
