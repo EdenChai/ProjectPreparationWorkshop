@@ -34,7 +34,7 @@ public class LogInrAcceptanceTest
     }
 
     @Test
-    @DisplayName("A.LogIn.1 - success test")
+    @DisplayName("A.LogIn.1 - log in success test")
     void success()
     {
         assertDoesNotThrow(()-> system.logIn("validname", "HardPass#@!"));
