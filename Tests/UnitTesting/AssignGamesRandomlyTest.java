@@ -50,7 +50,7 @@ public class AssignGamesRandomlyTest {
     }
 
     @Test
-    @DisplayName("Assign games randomly")
+    @DisplayName("U.RANDOMPOLICY.1 - AssignRandomSuccessfully() function test")
     void AssignRandomSuccessfully() throws UserAlreadyExist {
         dbConnector.addStadiumDate(stadium1, date1);
         arr.add(game1);
@@ -59,7 +59,7 @@ public class AssignGamesRandomlyTest {
 
 
     @Test
-    @DisplayName("Assign games randomly")
+    @DisplayName("U.RANDOMPOLICY.2 - AssignRandomEmptyArray() function test")
     void AssignRandomEmptyArray()
     {
         ArrayList<Game> arr2 = new ArrayList<Game>();
@@ -70,14 +70,14 @@ public class AssignGamesRandomlyTest {
 
 
     @Test
-    @DisplayName("Assign games randomly")
+    @DisplayName("U.RANDOMPOLICY.3 - AssignRandomNull() function test")
     void AssignRandomNull()
     {
         assertThrows(NoGamesToAssign.class,()-> system.assignGamesRandomly(null,AM));
     }
 
     @Test
-    @DisplayName("Assign games By referee not association member")
+    @DisplayName("U.RANDOMPOLICY.4 - AssignByIndexByDifferentUser() function test")
     void AssignByIndexByDifferentUser() throws UserAlreadyExist {
         dbConnector.addStadiumDate(stadium1, date1);
         arr.add(game1);
@@ -85,7 +85,7 @@ public class AssignGamesRandomlyTest {
     }
 
     @Test
-    @DisplayName("Assign games By referee not association member")
+    @DisplayName("U.RANDOMPOLICY.5 - AssignByRandomEventLogExists() function test")
     void AssignByRandomEventLogExists() throws Exception {
         dbConnector.addStadiumDate(stadium1, date1);
         arr.add(game1);
@@ -94,7 +94,7 @@ public class AssignGamesRandomlyTest {
     }
 
     @Test
-    @DisplayName("Assign games By referee not association member")
+    @DisplayName("U.RANDOMPOLICY.6 - AssignByRandomByNullUser() function test")
     void AssignByRandomByNullUser() throws UserAlreadyExist {
         dbConnector.addStadiumDate(stadium1, date1);
         arr.add(game1);
@@ -102,7 +102,7 @@ public class AssignGamesRandomlyTest {
     }
 
     @Test
-    @DisplayName("Assign games not enough stadiums")
+    @DisplayName("U.RANDOMPOLICY.7 - AssignRandomlySuccessfullyMultipleGames() function test")
     void AssignRandomlySuccessfullyMultipleGames() throws UserAlreadyExist {
         arr.add(game1);
         arr.add(game2);
@@ -113,7 +113,7 @@ public class AssignGamesRandomlyTest {
     }
 
     @Test
-    @DisplayName("Assign games not enough stadiums")
+    @DisplayName("U.RANDOMPOLICY.8 - AssignRandomlySuccessfullyMultipleDates() function test")
     void AssignRandomlySuccessfullyMultipleDates() throws UserAlreadyExist {
         arr.add(game1);
         arr.add(game2);
@@ -121,5 +121,13 @@ public class AssignGamesRandomlyTest {
         dbConnector.addStadiumDate(stadium1, date2);
         dbConnector.addStadiumDate(stadium1, date3);
         assertDoesNotThrow(()-> system.assignGamesRandomly( arr, AM));
+    }
+
+    @Test
+    @DisplayName("U.RANDOMPOLICY.9 - AssignNotEnoughStadiums() function test")
+    void AssignNotEnoughStadiums()
+    {
+        arr.add(game1);
+        assertThrows(LessStadiumsThanGames.class,()-> system.assignGamesByIndex(arr,AM));
     }
 }

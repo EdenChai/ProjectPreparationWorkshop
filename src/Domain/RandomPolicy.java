@@ -2,6 +2,7 @@ package Domain;
 
 import DataAccess.DBConnector;
 import Domain.Users.Referee;
+import Exceptions.GameWithNoDate;
 import Exceptions.LessStadiumsThanGames;
 import Exceptions.NoGamesToAssign;
 import Exceptions.UserIsAlreadyLoggedIn;
@@ -37,7 +38,7 @@ public class RandomPolicy extends Policy{
     }
 
     @Override
-    public Boolean assignReferees(ArrayList<Game> games) throws NoGamesToAssign {
+    public Boolean assignReferees(ArrayList<Game> games) throws NoGamesToAssign, GameWithNoDate {
         if (games==null || games.size()==0){
             throw new NoGamesToAssign("No games were sent to be assigned");
         }
@@ -45,6 +46,9 @@ public class RandomPolicy extends Policy{
         ArrayList<Game> cantBeAssigned = new ArrayList<>(); //list of games that there is no available referee in their date
         HashMap<Date, ArrayList<Referee>> availableReferees = DBConnector.getInstance().getAvailableReferees();
         for(int i=0; i<games.size(); i++){
+            if(games.get(i).getDate()==null){
+                throw new GameWithNoDate("Can't assign referee without Date");
+            }
             if(availableReferees.containsKey(games.get(i).getDate())){ // if there is an available referee in the game's date
                 Random randomGenerator = new Random();
                 int randomInt = randomGenerator.nextInt(availableReferees.get(games.get(i).getDate()).size()); //get a random referee from the referees that ae available in the specific date
