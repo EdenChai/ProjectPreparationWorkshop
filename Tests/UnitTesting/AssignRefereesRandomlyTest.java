@@ -56,14 +56,14 @@ public class AssignRefereesRandomlyTest {
 
 
     @Test
-    @DisplayName("Assign games By Index")
+    @DisplayName("U.RANDOMPOLICY.10 - AssignRefereesWithNullArray() function test")
     void AssignRefereesWithNullArray() {
         assertThrows(NoGamesToAssign.class, () -> system.assignRefereesRandomly(null,AM));
     }
 
 
     @Test
-    @DisplayName("Assign games no array")
+    @DisplayName("U.RANDOMPOLICY.11 - AssignWithEmptyArray() function test")
     void AssignWithEmptyArray()
     {
         ArrayList<Game> arr2 = new ArrayList<Game>();
@@ -71,7 +71,7 @@ public class AssignRefereesRandomlyTest {
     }
 
     @Test
-    @DisplayName("Assign games By referee not association member")
+    @DisplayName("U.RANDOMPOLICY.12 - AssignByDifferentUser() function test")
     void AssignByDifferentUser() throws Exception {
         /*add games to array*/
         arr.add(game1);
@@ -81,7 +81,7 @@ public class AssignRefereesRandomlyTest {
     }
 
     @Test
-    @DisplayName("Assign games By referee not association member")
+    @DisplayName("U.RANDOMPOLICY.13 - AssignByNullUser() function test")
     void AssignByNullUser() throws Exception {
         /*add available stadiums by date to DB*/
         dbConnector.addStadiumDate(stadium1, date1);
@@ -95,8 +95,8 @@ public class AssignRefereesRandomlyTest {
 
 
     @Test
-    @DisplayName("Assign games By referee not association member")
-    void AssignGameWithNoDate() throws Exception {
+    @DisplayName("U.RANDOMPOLICY.14 - AssignRefereeToGameWithNoDate() function test")
+    void AssignRefereeToGameWithNoDate() throws Exception {
         /*add available stadiums by date to DB*/
         dbConnector.addStadiumDate(stadium1, date1);
         /*add games to array*/
@@ -110,7 +110,7 @@ public class AssignRefereesRandomlyTest {
 
 
     @Test
-    @DisplayName("Assign games By referee not association member")
+    @DisplayName("U.RANDOMPOLICY.15 - AssignWithNoReferees() function test")
     void AssignWithNoReferees() throws Exception {
         /*add games to array*/
         arr.add(game1);

@@ -43,14 +43,14 @@ class PlayerIntegrationTest
 
     @Test
     @DisplayName("I.PLAYER.2 - setTeam() function test")
-    public void setTeam(Team team)
+    public void setTeam()
     {
         Team team2 = new Team("Beta");
         Team teamP = player.getTeam();
-        assertNotEquals(team, teamP);
+        assertNotEquals(team2, teamP);
         player.setTeam(team2);
         teamP = player.getTeam();
-        assertEquals(team, teamP);
+        assertEquals(team2, teamP);
     }
 
 

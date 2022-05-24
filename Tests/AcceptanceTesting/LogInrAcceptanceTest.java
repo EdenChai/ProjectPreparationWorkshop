@@ -57,7 +57,7 @@ public class LogInrAcceptanceTest
 
     @Test
     @DisplayName("A.LogIn.4 - invalidPassword test")
-    void invalidPassword ()
+    void invalidPassword()
     {
         assertThrows(UserPasswordDoesNotMatch.class,()-> system.logIn("validname", "notCorrectPassword"));
     }
