@@ -14,15 +14,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LogInrAcceptanceTest
 {
-    DBConnector dbConnector = DBConnector.getInstance();
-    System system = new System(dbConnector);
-
+    DBConnector dbConnector;
+    System system;
     User user;
 
     @BeforeEach
     void setUp() throws UserAlreadyExist
     {
-
+        dbConnector = DBConnector.getInstance();
+        system = new System(dbConnector);
         user = new Fan("validname", "HardPass#@!", false);
         dbConnector.addUser(user,"Fan" );
     }

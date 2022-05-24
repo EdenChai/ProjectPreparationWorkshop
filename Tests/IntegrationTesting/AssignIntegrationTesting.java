@@ -44,21 +44,20 @@ public class AssignIntegrationTesting {
     Team Rishon = new Team("Rishon");
     Game game1 = new Game(PetahTikva, Rishon);
     Game game2 = new Game(BeerSheva, TLV);
+    Game game3 = new Game(BeerSheva, Rishon);
     Referee notAM = new Referee("ref1", "222", true);
     AssociationMember AM = new AssociationMember("am", "123",true);
     Stadium stadium1 = new Stadium("stadiumName1", "stadiumCity1");
     Stadium stadium2 = new Stadium("stadiumName2", "stadiumCity2");
+    Referee referee1 = new Referee("Hadar", "123", true);
+    Referee referee2 = new Referee("Noa", "1234", true);
+    Referee referee3 = new Referee("Shani", "1234", true);
+
 
     Date date1 = new Date(2022,9,6);
     Date date2 = new Date(2022, 3, 27);
     Date date3 = new Date(2022, 8, 18);
     Date date4 = new Date(2022, 4, 1);
-
-    Game game3 = new Game(BeerSheva, Rishon);
-    Referee referee1 = new Referee("Hadar", "123", true);
-    Referee referee2 = new Referee("Noa", "1234", true);
-    Referee referee3 = new Referee("Shani", "1234", true);
-
 
     @BeforeEach
     void createGamesEraseDBContent() {
@@ -69,55 +68,25 @@ public class AssignIntegrationTesting {
     }
 
 
-
-    @Test
-    @DisplayName("Assign games By referee not association member")
-    void AssignRefereesSuccessfullyRandomGamesIndexReferees() throws Exception {
-        dbConnector.addStadiumDate(stadium1, date1);
-        arr.add(game1);
-        arr.add(game2);
-        dbConnector.addRefereeDate(referee1, date1);
-        dbConnector.addRefereeDate(referee2, date2);
-        dbConnector.addRefereeDate(referee3, date3);
-        dbConnector.addStadiumDate(stadium1, date1);
-        dbConnector.addStadiumDate(stadium2, date2);
-        dbConnector.addStadiumDate(stadium2, date3);
-        system.assignGamesRandomly(arr, AM);
-        system.assignRefereesByIndex(arr, AM);
-        assertTrue(()-> game1.getReferees().size()>0 && game2.getReferees().size()>0);
-    }
-
-    @Test
-    @DisplayName("Assign games By referee not association member")
-    void AssignRefereesSuccessfullyRandom() throws Exception {
-        dbConnector.addStadiumDate(stadium1, date1);
-        arr.add(game1);
-        arr.add(game2);
-        dbConnector.addRefereeDate(referee1, date1);
-        dbConnector.addRefereeDate(referee2, date2);
-        dbConnector.addRefereeDate(referee3, date3);
-        dbConnector.addStadiumDate(stadium1, date1);
-        dbConnector.addStadiumDate(stadium2, date2);
-        dbConnector.addStadiumDate(stadium2, date3);
-        system.assignGamesRandomly(arr, AM);
-        system.assignRefereesRandomly(arr, AM);
-        assertTrue(()-> game1.getReferees().size()>0 && game2.getReferees().size()>0);
-    }
-
     @Test
     @DisplayName("Assign games By referee not association member")
     void AssignRefereesSuccessfullyByIndex() throws Exception {
-        dbConnector.addStadiumDate(stadium1, date1);
+        /*add games to array*/
         arr.add(game1);
         arr.add(game2);
+        /*add available stadiums by date to DB*/
+        dbConnector.addStadiumDate(stadium1, date1);
         dbConnector.addStadiumDate(stadium1, date1);
         dbConnector.addStadiumDate(stadium2, date2);
         dbConnector.addStadiumDate(stadium2, date3);
         dbConnector.addRefereeDate(referee1, date1);
         dbConnector.addRefereeDate(referee2, date2);
         dbConnector.addRefereeDate(referee3, date3);
+        /*assign games*/
         system.assignGamesByIndex(arr, AM);
+        /*assign referees*/
         system.assignRefereesByIndex(arr, AM);
+        /*check*/
         assertTrue(()-> game1.getReferees().size()>0 && game2.getReferees().size()>0);
     }
 
@@ -125,31 +94,90 @@ public class AssignIntegrationTesting {
     @DisplayName("Assign games By referee not association member")
     void NoRefereesToAssign() throws Exception {
         dbConnector.addStadiumDate(stadium1, date1);
+        /*add games to array*/
         arr.add(game1);
         arr.add(game2);
+        /*add available stadiums to DB*/
         dbConnector.addStadiumDate(stadium1, date1);
         dbConnector.addStadiumDate(stadium2, date2);
         dbConnector.addStadiumDate(stadium2, date3);
+        /*assign games*/
         system.assignGamesByIndex(arr, AM);
+        /*assign referees*/
         system.assignRefereesByIndex(arr, AM);
+        /*check*/
         assertTrue(()-> game1.getReferees().size()==0 && game2.getReferees().size()==0);
     }
 
     @Test
     @DisplayName("Assign games By referee not association member")
     void SomeDatesWithNoAvailableReferee() throws Exception {
-        dbConnector.addStadiumDate(stadium1, date1);
+        /*add games to array*/
         arr.add(game1);
         arr.add(game2);
         arr.add(game3);
+        /*add available stadiums to DB*/
+        dbConnector.addStadiumDate(stadium1, date1);
         dbConnector.addStadiumDate(stadium1, date1);
         dbConnector.addStadiumDate(stadium2, date2);
         dbConnector.addStadiumDate(stadium2, date3);
         dbConnector.addRefereeDate(referee1, date1);
         dbConnector.addRefereeDate(referee2, date2);
         dbConnector.addRefereeDate(referee3, date1);
+        /*assign games*/
         system.assignGamesByIndex(arr, AM);
+        /*assign referees*/
         system.assignRefereesByIndex(arr, AM);
+        /*check*/
         assertTrue(()-> game1.getReferees().size()+game2.getReferees().size()+game2.getReferees().size()==2);
     }
+
+
+
+
+    @Test
+    @DisplayName("Assign games By referee not association member")
+    void AssignRefereesSuccessfullyRandomGamesIndexReferees() throws Exception {
+        /*add games to array*/
+        arr.add(game1);
+        arr.add(game2);
+        /*add available stadiums to DB*/
+        dbConnector.addStadiumDate(stadium1, date1);
+        dbConnector.addRefereeDate(referee1, date1);
+        dbConnector.addRefereeDate(referee2, date2);
+        dbConnector.addRefereeDate(referee3, date3);
+        dbConnector.addStadiumDate(stadium1, date1);
+        dbConnector.addStadiumDate(stadium2, date2);
+        dbConnector.addStadiumDate(stadium2, date3);
+        /*assign games*/
+        system.assignGamesRandomly(arr, AM);
+        /*assign referees*/
+        system.assignRefereesByIndex(arr, AM);
+        /*check*/
+        assertTrue(()-> game1.getReferees().size()>0 && game2.getReferees().size()>0);
+    }
+
+    @Test
+    @DisplayName("Assign games By referee not association member")
+    void AssignRefereesSuccessfullyRandom() throws Exception {
+        /*add games to array*/
+        arr.add(game1);
+        arr.add(game2);
+        /*add available stadiums to DB*/
+        dbConnector.addStadiumDate(stadium1, date1);
+        dbConnector.addRefereeDate(referee1, date1);
+        dbConnector.addRefereeDate(referee2, date2);
+        dbConnector.addRefereeDate(referee3, date3);
+        dbConnector.addStadiumDate(stadium1, date1);
+        dbConnector.addStadiumDate(stadium2, date2);
+        dbConnector.addStadiumDate(stadium2, date3);
+        /*assign games*/
+        system.assignGamesRandomly(arr, AM);
+        /*assign referees*/
+        system.assignRefereesRandomly(arr, AM);
+        /*check*/
+        assertTrue(()-> game1.getReferees().size()>0 && game2.getReferees().size()>0);
+    }
+
+
 }

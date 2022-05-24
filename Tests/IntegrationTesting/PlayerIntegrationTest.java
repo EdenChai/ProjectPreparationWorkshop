@@ -21,8 +21,6 @@ class PlayerIntegrationTest
     @BeforeEach
     void setUp()
     {
-        DBConnector dbConnector = DBConnector.getInstance();
-        System system = new System(dbConnector);
         team = new Team("Alpha");
         player = new Player("Testy", "testytesty", false,"9/05/2022", Position.SWEEPER, team);
 
