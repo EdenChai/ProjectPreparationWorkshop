@@ -21,8 +21,6 @@ class PlayerIntegrationTest
     @BeforeEach
     void setUp()
     {
-        DBConnector dbConnector = DBConnector.getInstance();
-        System system = new System(dbConnector);
         team = new Team("Alpha");
         player = new Player("Testy", "testytesty", false,"9/05/2022", Position.SWEEPER, team);
 
@@ -45,14 +43,14 @@ class PlayerIntegrationTest
 
     @Test
     @DisplayName("I.PLAYER.2 - setTeam() function test")
-    public void setTeam(Team team)
+    public void setTeam()
     {
         Team team2 = new Team("Beta");
         Team teamP = player.getTeam();
-        assertNotEquals(team, teamP);
+        assertNotEquals(team2, teamP);
         player.setTeam(team2);
         teamP = player.getTeam();
-        assertEquals(team, teamP);
+        assertEquals(team2, teamP);
     }
 
 
