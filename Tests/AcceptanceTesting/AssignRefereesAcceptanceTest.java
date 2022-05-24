@@ -47,13 +47,11 @@ public class AssignRefereesAcceptanceTest {
     void createGamesEraseDBContent() {
         dbConnector.eraseDBContent();
         arr = new ArrayList<Game>();
-
-
     }
 
     @Test
-    @DisplayName("Assign games By referee not association member")
-    void AssignRefereesSuccessfullyRandomGamesIndexReferees() throws Exception {
+    @DisplayName("A.POLICY.1 - AssignRefereesSuccessfullyGamesByRandomRefereesByIndex() function test")
+    void AssignRefereesSuccessfullyGamesByRandomRefereesByIndex() throws Exception {
         /*add stadium to DB*/
         dbConnector.addStadiumDate(stadium1, date1);
         /*add referee to DB*/
@@ -68,10 +66,11 @@ public class AssignRefereesAcceptanceTest {
     }
 
     @Test
-    @DisplayName("Assign games By referee not association member")
+    @DisplayName("A.RANDOMPOLICY.3 - AssignRefereesRandomlyNoReferee() function test")
     void AssignRefereesRandomlyNoReferee() throws Exception {
         /*add stadium to DB*/
         dbConnector.addStadiumDate(stadium1, date2);
+        /*add DB to array*/
         arr.add(game1);
         /*assign game*/
         system.assignGamesRandomly(arr, AM);
@@ -83,7 +82,7 @@ public class AssignRefereesAcceptanceTest {
 
 
     @Test
-    @DisplayName("Assign games By referee not association member")
+    @DisplayName("A.POLICY.2 - AssignRefereesSuccessfully() function test")
     void AssignRefereesSuccessfully() throws Exception {
         /*add stadiums to DB*/
         dbConnector.addStadiumDate(stadium1, date1);

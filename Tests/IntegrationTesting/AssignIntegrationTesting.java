@@ -133,8 +133,6 @@ public class AssignIntegrationTesting {
     }
 
 
-
-
     @Test
     @DisplayName("I.POLICY.1 - AssignRefereesSuccessfullyRandomGamesIndexReferees() function test")
     void AssignRefereesSuccessfullyRandomGamesIndexReferees() throws Exception {

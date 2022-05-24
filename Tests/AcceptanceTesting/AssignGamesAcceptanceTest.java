@@ -44,39 +44,49 @@ public class AssignGamesAcceptanceTest {
     }
 
     @Test
-    @DisplayName("Assign games By referee not association member")
-    void AssignRefereesSuccessfullyRandomGamesIndexReferees() throws Exception {
+    @DisplayName("A.INDEXPOLICY.1 - AssignGameByIndex() function test")
+    void AssignGameByIndex() throws Exception {
+        /*add available stadium to DB*/
         dbConnector.addStadiumDate(stadium1, date1);
+        /*add games to array*/
         arr.add(game1);
+        /*assign game*/
         system.assignGamesByIndex(arr, AM);
+        /*CHECK*/
         assertTrue(()-> game1.getDate()==date1);
     }
 
+
+
     @Test
-    @DisplayName("Assign games By referee not association member")
+    @DisplayName("A.RANDOMPOLICY.1 - AssignByIndexNoStadiums() function test")
+    void AssignByIndexNoStadiums()
+    {
+        /*add game to array*/
+        arr.add(game1);
+        /*CHECK*/
+        assertThrows(LessStadiumsThanGames.class,()-> system.assignGamesByIndex(arr,AM));
+    }
+
+    @Test
+    @DisplayName("A.RANDOMPOLICY.2 - AssignSuccessfullyThreeRandomGames() function test")
     void AssignSuccessfullyThreeRandomGames() throws Exception {
+        /*add available stadiums to DB*/
         dbConnector.addStadiumDate(stadium1, date1);
         dbConnector.addStadiumDate(stadium2, date2);
         dbConnector.addStadiumDate(stadium3, date3);
+        /*add games to array*/
         arr.add(game1);
         arr.add(game2);
         arr.add(game3);
+        /*assign games*/
         system.assignGamesRandomly(arr, AM);
+        /*CHECK*/
         ArrayList<Date> DateArr = new ArrayList<Date>();
         DateArr.add(date1);
         DateArr.add(date2);
         DateArr.add(date3);
         assertTrue(()-> game1.getDate()!= game2.getDate() && game1.getDate()!= game3.getDate() && game2.getDate()!= game3.getDate() && DateArr.contains(game1.getDate()) && DateArr.contains(game1.getDate()) && DateArr.contains(game1.getDate()));
     }
-
-
-    @Test
-    @DisplayName("Assign games not enough stadiums")
-    void AssignByIndexNoStadiums()
-    {
-        arr.add(game1);
-        assertThrows(LessStadiumsThanGames.class,()-> system.assignGamesByIndex(arr,AM));
-    }
-
 
 }
