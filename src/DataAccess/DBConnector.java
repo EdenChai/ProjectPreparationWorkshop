@@ -165,23 +165,23 @@ public class DBConnector {
                 }
             }
             User user = null;
-            if (string_type == "AssociationMember"){
+            if (string_type.equals("AssociationMember")){
                 user = new AssociationMember(string_username, string_password, isLogged);
-            } else if (string_type == "Coach"){
+            } else if (string_type.equals("Coach")){
                 user = new Coach(string_username, string_password, isLogged);
-            } else if (string_type == "Fan"){
+            } else if (string_type.equals("Fan")){
                 user = new Fan(string_username, string_password, isLogged);
-            } else if (string_type == "MainReferee"){
+            } else if (string_type.equals("MainReferee")){
                 user = new MainReferee(string_username, string_password, isLogged);
-            } else if (string_type == "Player"){
+            } else if (string_type.equals("Player")){
                 user = new Player(string_username, string_password, isLogged);
-            } else if (string_type == "Referee"){
+            } else if (string_type.equals("Referee") ){
                 user = new Referee(string_username, string_password, isLogged);
-            } else if (string_type == "SystemManager"){
+            } else if (string_type.equals( "SystemManager")){
                 user = new SystemManager(string_username, string_password, isLogged);
-            } else if (string_type == "TeamManager"){
+            } else if (string_type.equals("TeamManager")){
                 user = new TeamManager(string_username, string_password, isLogged);
-            } else if (string_type == "TeamOwner"){
+            } else if (string_type.equals("TeamOwner")){
                 user = new TeamOwner(string_username, string_password, isLogged);
             }
             return user;
@@ -255,7 +255,7 @@ public class DBConnector {
         String username = user.getUserName();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String strDate = dateFormat.format(date);
-
+        addUser(user, "Referee");
         try {
             String query = "INSERT INTO `assignment3_db`.`referees`\n" +
                     "(`date`,\n" +

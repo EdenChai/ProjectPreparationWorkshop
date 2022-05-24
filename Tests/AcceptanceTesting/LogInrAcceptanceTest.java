@@ -14,37 +14,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LogInrAcceptanceTest
 {
-    DBConnector dbConnector;
-    System system;
+    DBConnector dbConnector = DBConnector.getInstance();
+    System system = new System(dbConnector);
+
+    User user;
 
     @BeforeEach
-    void setUp()
+    void setUp() throws UserAlreadyExist
     {
-        dbConnector = DBConnector.getInstance();
-        system = new System(dbConnector);
-        try
-        {
-        //system.registerFan("validname", "HardPass#@!", false, system); TODO add user to database/make sure there is one
-        }
-        catch (Exception ignored)
-        {
 
-        }
+        user = new Fan("validname", "HardPass#@!", false);
+        dbConnector.addUser(user,"Fan" );
     }
 
     @AfterEach
     void tearDown()
     {
-        try
-        {
-            User user =dbConnector.getUser("validname");
-            user.setLogged(false);
-            //TODO - add update function if needed
-        }
-        catch (UserDoesNotExist ignored)
-        {
-
-        }
+        dbConnector.eraseDBContent();
     }
 
     @Test

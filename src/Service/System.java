@@ -24,6 +24,7 @@ public class System
         if(user == null){
             throw new UserIsNull("user is not defined");
         }
+
         if(!(user instanceof AssociationMember)){
             throw new AssignGameByDifferentUser("this user is not permitted to assign games");
         }

@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AssignRefereesRandomlyTest {
     DBConnector dbConnector;
-    System system;
+    System system = new System(dbConnector);
     ArrayList<Game> arr = new ArrayList<Game>();
     Team PetahTikva = new Team("Petah Tikva");
     Team Rishon = new Team("Rishon");
