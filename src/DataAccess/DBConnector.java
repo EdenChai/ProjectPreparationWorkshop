@@ -63,7 +63,7 @@ public class DBConnector {
 
                 String query = "DELETE FROM stadiums WHERE date= '" + strDate + "' AND stadium= '" + strStadium + "'";
                 statement.executeUpdate(query);
-                System.out.println(strDate + strStadium);
+                //System.out.println(strDate + strStadium);
                 //System.out.println("Record deleted successfully");
             }
 

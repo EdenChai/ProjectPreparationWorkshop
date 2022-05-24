@@ -23,8 +23,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AssignGamesRandomlyTest {
-    DBConnector dbConnector;
-    System system;
+    DBConnector dbConnector = DBConnector.getInstance();
+    System system = new System(dbConnector);
     ArrayList<Game> arr = new ArrayList<Game>();
     Team PetahTikva = new Team("Petah Tikva");
     Team BeerSheva = new Team("BeerSheva");
@@ -51,9 +51,8 @@ public class AssignGamesRandomlyTest {
 
     @Test
     @DisplayName("Assign games randomly")
-    void AssignRandomSuccessfully()
-    {
-        //TODO make sure there is at least one stadium at the DB
+    void AssignRandomSuccessfully() throws UserAlreadyExist {
+        dbConnector.addStadiumDate(stadium1, date1);
         arr.add(game1);
         assertDoesNotThrow(()-> system.assignGamesRandomly(arr,AM));
     }
@@ -76,9 +75,6 @@ public class AssignGamesRandomlyTest {
     {
         assertThrows(NoGamesToAssign.class,()-> system.assignGamesRandomly(null,AM));
     }
-
-    //TODO test where there are more games than stadiums
-    //TODO test where there are more stadiums than games
 
     @Test
     @DisplayName("Assign games By referee not association member")

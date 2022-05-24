@@ -21,30 +21,39 @@ public class System
 
 
     public void assignGamesRandomly(ArrayList<Game> games, User user) throws Exception {
+        if(user == null){
+            throw new UserIsNull("user is not defined");
+        }
         if(!(user instanceof AssociationMember)){
-            //TODO exception
+            throw new AssignGameByDifferentUser("this user is not permitted to assign games");
         }
         if(!user.isLogged()){
             throw new UserIsNotLoggedIn("User is not logged in");
         }
         ((AssociationMember)user).assignGamesRandomly(games);
-        //TODO check if the user that is logged in is association member + call the assosciation member function
     }
 
     public void assignGamesByIndex(ArrayList<Game> games,User user) throws Exception {
+        if(user == null){
+            throw new UserIsNull("user is not defined");
+        }
         if(!(user instanceof AssociationMember)){
             throw new AssignGameByDifferentUser("this user is not permitted to assign games");
         }
         if(!user.isLogged()){
             throw new UserIsNotLoggedIn("User is not logged in");
         }
+
         ((AssociationMember)user).assignGamesByIndex(games);
         ;
     }
 
     public void assignRefereesRandomly(ArrayList<Game> games,User user) throws Exception {
+        if(user == null){
+            throw new UserIsNull("user is not defined");
+        }
         if(!(user instanceof AssociationMember)){
-            throw new AssignGameByDifferentUser("this user is not permitted to assign games");
+            throw new AssignRefereesByDifferentUser("this user is not permitted to assign referees");
         }
         if(!user.isLogged()){
             throw new UserIsNotLoggedIn("User is not logged in");
@@ -53,8 +62,11 @@ public class System
     }
 
     public void assignRefereesByIndex(ArrayList<Game> games, User user) throws Exception {
+        if(user == null){
+            throw new UserIsNull("user is not defined");
+        }
         if(!(user instanceof AssociationMember)){
-            //TODO exception
+            throw new AssignRefereesByDifferentUser("this user is not permitted to assign referees");
         }
         if(!user.isLogged()){
             throw new UserIsNotLoggedIn("User is not logged in");

@@ -23,8 +23,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AssignGamesByIndexTest {
-    DBConnector dbConnector;
-    System system;
+    DBConnector dbConnector = DBConnector.getInstance();
+    System system = new System(dbConnector);
     ArrayList<Game> arr = new ArrayList<Game>();
     Team PetahTikva = new Team("Petah Tikva");
     Team BeerSheva = new Team("BeerSheva");
@@ -52,7 +52,6 @@ public class AssignGamesByIndexTest {
     @Test
     @DisplayName("Assign games by index")
     void AssignByIndexSuccessfully() throws UserAlreadyExist {
-        //TODO make sure there is at least one stadium at the DB
         dbConnector.addStadiumDate(stadium1, date1);
         arr.add(game1);
         assertDoesNotThrow(()-> system.assignGamesByIndex(arr, AM));

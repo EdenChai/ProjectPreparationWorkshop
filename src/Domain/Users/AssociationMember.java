@@ -12,8 +12,8 @@ public class AssociationMember extends User {
      * -----Derivatives attributes-----
      */
     private League[] leagues;
-    private IndexPolicy indexPolicy;
-    private RandomPolicy randomPolicy;
+    private IndexPolicy indexPolicy = new IndexPolicy();
+    private RandomPolicy randomPolicy = new RandomPolicy();
     /**
      * -----Functions-----
      */
